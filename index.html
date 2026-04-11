@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>LOTE — Living Off Trusted Email</title>
-  <meta name="description" content="LOTE is a clean-room original, GitHub Pages-compatible directory for trusted email and SaaS platform research.">
+  <meta name="description" content="LOTE is a public directory for SaaS/Cloud platforms which provide trusted email services that can be leveraged by offensive cybersecurity professionals.">
   <link rel="preconnect" href="https://api.fontshare.com">
   <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&f[]=clash-display@500,600,700&display=swap" rel="stylesheet">
   <style>
@@ -152,7 +152,7 @@
     .opsec-item{padding:.85rem;border-radius:12px;background:rgba(255,255,255,.02);border:1px solid var(--line)}
     .opsec-item strong{display:block;margin-bottom:.3rem;font-size:var(--text-xs);letter-spacing:.11em;text-transform:uppercase}
     .opsec-item p{margin:0;color:var(--muted)}
-    .taxonomy{display:grid;grid-template-columns:repeat(5,1fr);gap:var(--space-4);margin-top:var(--space-10)}
+    .taxonomy{display:grid;grid-template-columns:repeat(5,1fr);gap:var(--space-4);margin-bottom:var(--space-10)}
     .note-card{padding:var(--space-5)}
     .note-card h3{margin:0 0 .45rem;font-size:var(--text-sm);letter-spacing:.12em;text-transform:uppercase}
     .note-card p{margin:0;color:var(--muted)}
@@ -177,14 +177,15 @@
           </svg>
         </div>
         <div>
-          <strong>LOTE</strong>
-          <span>Living Off Trusted Email</span>
+          <strong>LOTE-PROJECT.GITHUB.IO</strong>
+          <span>from tumikoto with ❤</span>
         </div>
       </a>
       <div class="nav-actions">
-        <a class="nav-btn" href="#directory">Directory</a>
-        <a class="nav-btn" href="#taxonomy">Taxonomy</a>
-        <button class="nav-btn" type="button" data-theme-toggle aria-label="Toggle theme">Theme</button>
+        <a class="nav-btn" href="#taxonomy-header">Taxonomy</a>
+        <a class="nav-btn" href="#directory-header">Directory</a>
+        <a class="nav-btn" href="#contribute-header">Contribute</a>
+        <button class="nav-btn" type="button" data-theme-toggle aria-label="Toggle theme">Light Mode</button>
       </div>
     </div>
   </header>
@@ -193,31 +194,43 @@
     <section class="hero" id="top">
       <div class="hero-grid">
         <div>
-          <div class="eyebrow">Accordion directory · Tag-first filtering · JSON-driven detail text</div>
-          <h1>Track trusted email surfaces by service, URL, and category context.</h1>
-          <p class="lead">This version shifts fully to a tag-first model. The visible list only shows the service name, URL, and tags; selecting an entry expands it into a structured view with a main section, per-tag/category detail blocks loaded from JSON, and a separate opsec section for detections, cautions, and miscellaneous notes.</p>
-          <div class="cta-row">
-            <a class="btn btn-primary" href="#directory">Open directory</a>
-            <a class="btn btn-secondary" href="#taxonomy">See tag model</a>
-          </div>
+          <h1>Living Off Trusted Email</h1>
+          <p class="lead">A quick-reference page detailing options for leveraging trusted platforms' email features to deliver your phishing emails for you during your next social engineering campaign.</p>
+          <p class="lead"><strong><i>NOTE: current directory data is for demonstration purposes while this project is under active development.</i></strong></p>
+
         </div>
         <aside class="hero-card">
-          <h2>Operator view</h2>
+          <h2>Operator Guide</h2>
           <div class="signal-grid">
-            <div class="signal"><small>Visible columns</small><strong>Name · URL · Tags</strong></div>
-            <div class="signal"><small>Expansion model</small><strong>Accordion per entry</strong></div>
-            <div class="signal"><small>Filter logic</small><strong>Search + tags only</strong></div>
-            <div class="signal"><small>Secondary section</small><strong>Opsec notes</strong></div>
+            <div class="signal"><small>Quick Reference</small><strong>Platform name, URL, and applicable tags</strong></div>
+            <div class="signal"><small>Expanded Contents</small><strong> See full tag details and other opsec notes</strong></div>
+            <div class="signal"><small>Search & Filter</small><strong>Show LOTE options with the capabilities you need</strong></div>
+            <div class="signal"><small>Feedback</small><strong>Contributions and corrections are always welcome</strong></div>
           </div>
         </aside>
       </div>
     </section>
 
+    <div class="section-head" id="taxonomy-header">
+      <div>
+        <h2>Taxonomy</h2>
+        <p>An overview of general tag definitions is included below. Each LOTE entry can be expanded for further details related to how each tag pertains to the platform in question.</p>
+      </div>
+    </div>
+
+    <section class="taxonomy" id="taxonomy">
+      <article class="note-card"><h3 style="color:var(--magenta)">Language</h3><p>Platforms which allow arbitrary text to be included in sent emails.</p></article>
+      <article class="note-card"><h3 style="color:var(--cyan)">Branding</h3><p>Platforms which allow arbitrary images or company name to be included in sent emails in a manner distinct from arbitrary text insertion (i.e., displayed prominently). </p></article>
+      <article class="note-card"><h3 style="color:var(--violet)">URL</h3><p>Platforms which allow arbitrary URL to be included in sent emails in a manner distinct from arbitrary text insertion (e.g., anchor tag, button, meeting location, etc.).</p></article>
+      <article class="note-card"><h3 style="color:var(--amber)">Payloads</h3><p>Platforms which allow either direct file attachments with sent emails or whose emails are designed to link directly to a file hosted on their platform.</p></article>
+      <article class="note-card"><h3 style="color:var(--lime)">Sender</h3><p>Platforms which allow users to customize the display name used in the source address for the sent email.</p></article>
+    </section>
+
     <section id="directory">
-      <div class="section-head">
+      <div class="section-head" id="directory-header">
         <div>
-          <h2>LOTE directory</h2>
-          <p>Click a tag to filter the list, then expand any entry to inspect its tag-specific notes and opsec context. The sample data is embedded as JSON-style objects so you can replace it with your own evidence and hosting footprint details.</p>
+          <h2>Directory</h2>
+          <p>Search LOTE entry text, or click a tag to filter the list. Expand any entry to inspect its tag-specific details and any additional opsec notes related to its use for phishing campaigns.</p>
         </div>
       </div>
 
@@ -244,22 +257,16 @@
       <div class="entries" id="entries"></div>
     </section>
 
-    <section class="taxonomy" id="taxonomy">
-      <article class="note-card"><h3 style="color:var(--cyan)">Branding</h3><p>Visual identity, trust transfer, tenant presentation, and design cues that can influence recipient confidence.</p></article>
-      <article class="note-card"><h3 style="color:var(--magenta)">Language</h3><p>Subject line themes, urgency framing, collaboration wording, and copy patterns seen in the service workflow.</p></article>
-      <article class="note-card"><h3 style="color:var(--violet)">URL</h3><p>Hostnames, redirects, tenant paths, share links, and chained destinations relevant to triage or enrichment.</p></article>
-      <article class="note-card"><h3 style="color:var(--amber)">Payloads</h3><p>Files, previews, forms, destinations, or secondary actions associated with the service’s email-linked workflow.</p></article>
-      <article class="note-card"><h3 style="color:var(--lime)">Sender</h3><p>Display-name patterns, mail-path signals, tenant-authenticated sending, and sender-context mismatches.</p></article>
-    </section>
+
   </main>
 
   <footer class="shell">
-    <div class="footer-card">
+    <div class="footer-card" id="contribute-header">
       <div>
-        <strong style="font-family:var(--font-display);font-size:var(--text-lg);letter-spacing:.04em;text-transform:uppercase">LOTE starter</strong>
-        <p style="margin:.35rem 0 0;color:var(--muted)">Static HTML for GitHub Pages. Rename to <code>index.html</code>, keep the tag schema consistent, and replace sample entries with your own original dataset.</p>
+        <strong style="font-family:var(--font-display);font-size:var(--text-lg);letter-spacing:.04em;text-transform:uppercase">SUGGESTIONS?</strong>
+        <p style="margin:.35rem 0 0;color:var(--muted)">Feel free to reach out with any corrections, contributions, or other ideas to help improve this project for the community.</p>
       </div>
-      <a class="btn btn-secondary" href="#top">Back to top</a>
+      <a class="btn btn-secondary" href="https://github.com/lote-project/lote-project.github.io">GITHUB REPO</a>
     </div>
   </footer>
 
@@ -268,7 +275,7 @@
 
     const entriesData = [
       {
-        name: 'DocSend',
+        name: 'DocSend (DEMO)',
         url: 'https://docsend.com',
         tags: ['Branding','URL','Payloads','Sender'],
         summary: 'Document-sharing platform commonly recognized in business workflows, useful here as a sample service entry with hosted-link trust signals.',
@@ -286,7 +293,7 @@
         }
       },
       {
-        name: 'SendGrid',
+        name: 'SendGrid (DEMO)',
         url: 'https://sendgrid.com',
         tags: ['Branding','Language','Sender','URL'],
         summary: 'Email-delivery infrastructure that can lend legitimacy to transactional-looking messages and automated sender patterns.',
@@ -304,7 +311,7 @@
         }
       },
       {
-        name: 'HubSpot',
+        name: 'HubSpot (DEMO)',
         url: 'https://hubspot.com',
         tags: ['Branding','Language','Sender'],
         summary: 'CRM and outreach platform whose normal sales and customer-success patterns can overlap with suspicious contact attempts.',
@@ -322,7 +329,7 @@
         }
       },
       {
-        name: 'Dropbox Sign',
+        name: 'Dropbox Sign (DEMO)',
         url: 'https://sign.dropbox.com',
         tags: ['Language','URL','Sender','Payloads'],
         summary: 'Signature-request workflow with built-in urgency and a strong expectation of quick user action.',
@@ -340,7 +347,7 @@
         }
       },
       {
-        name: 'Mailchimp',
+        name: 'Mailchimp (DEMO)',
         url: 'https://mailchimp.com',
         tags: ['Branding','Sender','URL'],
         summary: 'Mass-mail platform that demonstrates how familiar campaign formatting and tracked links can normalize suspicious content.',
@@ -358,7 +365,7 @@
         }
       },
       {
-        name: 'Google Sites',
+        name: 'Google Sites (DEMO)',
         url: 'https://sites.google.com',
         tags: ['Branding','URL','Payloads'],
         summary: 'Hosted pages under a highly trusted ecosystem that can act as intermediate landing points in email-driven workflows.',
@@ -376,7 +383,7 @@
         }
       },
       {
-        name: 'Notion',
+        name: 'Notion (DEMO)',
         url: 'https://notion.so',
         tags: ['Branding','Language','Payloads','Sender'],
         summary: 'Collaboration and workspace platform that can support document, onboarding, or internal-note narratives in email lures.',
@@ -394,7 +401,7 @@
         }
       },
       {
-        name: 'SharePoint Online',
+        name: 'SharePoint Online (DEMO)',
         url: 'https://microsoft.sharepoint.com',
         tags: ['Branding','URL','Payloads','Sender'],
         summary: 'Enterprise document-hosting and sharing surface that appears naturally in many business email workflows.',
@@ -412,7 +419,7 @@
         }
       },
       {
-        name: 'Constant Contact',
+        name: 'Constant Contact (DEMO)',
         url: 'https://constantcontact.com',
         tags: ['Branding','Sender','Language'],
         summary: 'Campaign platform that illustrates how routine brand-comms tooling can overlap with suspicious sender behavior.',
@@ -548,7 +555,9 @@
 
     searchBox.addEventListener('input', applyFilters);
     themeToggle.addEventListener('click', () => {
-      root.dataset.theme = root.dataset.theme === 'light' ? 'dark' : 'light';
+      const newTheme = root.dataset.theme === 'light' ? 'dark' : 'light';
+      root.dataset.theme = newTheme;
+      themeToggle.textContent = newTheme === 'light' ? 'Dark mode' : 'Light mode';
     });
 
     renderTagFilters();
