@@ -1,0 +1,576 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LOTE — Living Off Trusted Email</title>
+  <meta name="description" content="LOTE is a clean-room original, GitHub Pages-compatible directory for trusted email and SaaS platform research.">
+  <link rel="preconnect" href="https://api.fontshare.com">
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&f[]=clash-display@500,600,700&display=swap" rel="stylesheet">
+  <style>
+    :root,[data-theme="dark"]{
+      --bg:#081018;
+      --bg-2:#0c1524;
+      --panel:#0f1b2e;
+      --panel-2:#122338;
+      --panel-3:#162b44;
+      --text:#e6f3ff;
+      --muted:#93a7c4;
+      --faint:#607590;
+      --line:rgba(146,170,212,.14);
+      --cyan:#48d7ff;
+      --teal:#00c2a8;
+      --violet:#8d7dff;
+      --magenta:#ff4fa3;
+      --amber:#ffb84d;
+      --lime:#b5f36b;
+      --danger:#ff7373;
+      --shadow:0 24px 60px rgba(0,0,0,.34);
+      --radius:18px;
+      --radius-sm:12px;
+      --content:1320px;
+      --font-body:'Satoshi',Inter,system-ui,sans-serif;
+      --font-display:'Clash Display','Satoshi',sans-serif;
+      --text-xs:clamp(.75rem,.7rem + .25vw,.875rem);
+      --text-sm:clamp(.875rem,.8rem + .35vw,1rem);
+      --text-base:clamp(1rem,.95rem + .25vw,1.125rem);
+      --text-lg:clamp(1.125rem,1rem + .75vw,1.5rem);
+      --text-xl:clamp(1.5rem,1.2rem + 1.25vw,2.2rem);
+      --text-2xl:clamp(2rem,1.2rem + 2.5vw,3.8rem);
+      --space-1:.25rem;--space-2:.5rem;--space-3:.75rem;--space-4:1rem;--space-5:1.25rem;--space-6:1.5rem;--space-8:2rem;--space-10:2.5rem;--space-12:3rem;--space-16:4rem;--space-20:5rem;
+    }
+    [data-theme="light"]{
+      --bg:#f4f8ff;
+      --bg-2:#eef4ff;
+      --panel:#ffffff;
+      --panel-2:#eff6ff;
+      --panel-3:#e5efff;
+      --text:#162133;
+      --muted:#5f708e;
+      --faint:#7c8ca5;
+      --line:rgba(33,64,112,.12);
+      --cyan:#007aa8;
+      --teal:#007c6c;
+      --violet:#5a46d1;
+      --magenta:#c13784;
+      --amber:#b86d00;
+      --lime:#648d00;
+      --danger:#c54343;
+      --shadow:0 18px 40px rgba(22,33,51,.08);
+    }
+    *,*::before,*::after{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;min-height:100vh;font-family:var(--font-body);font-size:var(--text-base);line-height:1.6;color:var(--text);background:
+      radial-gradient(circle at 8% 12%, rgba(72,215,255,.16), transparent 20%),
+      radial-gradient(circle at 92% 10%, rgba(255,79,163,.16), transparent 18%),
+      radial-gradient(circle at 80% 72%, rgba(141,125,255,.16), transparent 22%),
+      radial-gradient(circle at 20% 90%, rgba(181,243,107,.10), transparent 18%),
+      linear-gradient(180deg,var(--bg) 0%,var(--bg-2) 100%);
+      background-attachment:fixed}
+    a{color:inherit}
+    img,svg{display:block;max-width:100%}
+    button,input{font:inherit;color:inherit}
+    .shell{max-width:var(--content);margin:0 auto;padding:0 var(--space-4)}
+    .skip{position:absolute;left:-9999px}.skip:focus{left:1rem;top:1rem;z-index:200;background:var(--panel);padding:.75rem 1rem;border-radius:var(--radius-sm)}
+    .scanlines::before{content:"";position:fixed;inset:0;pointer-events:none;background:linear-gradient(to bottom, rgba(255,255,255,.022), rgba(255,255,255,0) 2px);background-size:100% 4px;opacity:.18;mix-blend-mode:soft-light}
+    header{position:sticky;top:0;z-index:100;background:color-mix(in srgb,var(--bg) 74%, transparent);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:var(--space-4);padding:1rem 0}
+    .brand{display:flex;gap:.9rem;align-items:center;text-decoration:none}
+    .logo{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;position:relative;border:1px solid rgba(72,215,255,.26);background:linear-gradient(145deg, rgba(72,215,255,.16), rgba(141,125,255,.12));box-shadow:0 0 30px rgba(72,215,255,.16)}
+    .logo svg{width:26px;height:26px;color:var(--cyan)}
+    .brand strong{display:block;font-family:var(--font-display);font-size:1.45rem;letter-spacing:.06em;text-transform:uppercase}
+    .brand span{display:block;font-size:var(--text-xs);letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+    .nav-actions{display:flex;gap:.75rem;flex-wrap:wrap}
+    .nav-btn{border:1px solid var(--line);background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));padding:.82rem 1rem;border-radius:999px;text-decoration:none;cursor:pointer}
+    .hero{padding:clamp(3.4rem,8vw,7rem) 0 2.5rem}
+    .hero-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:var(--space-8);align-items:start}
+    .eyebrow{display:inline-flex;align-items:center;gap:.55rem;padding:.5rem .8rem;border-radius:999px;border:1px solid rgba(72,215,255,.18);background:rgba(18,35,56,.6);color:var(--cyan);font-size:var(--text-xs);letter-spacing:.12em;text-transform:uppercase}
+    h1{margin:1rem 0 1rem;font-family:var(--font-display);font-size:clamp(3rem,7vw,6.3rem);line-height:.9;letter-spacing:-.05em;max-width:11ch;text-transform:uppercase}
+    .lead{margin:0 0 var(--space-6);max-width:68ch;color:var(--muted)}
+    .cta-row{display:flex;gap:var(--space-3);flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;gap:.65rem;padding:1rem 1.2rem;border-radius:999px;text-decoration:none;border:1px solid var(--line);font-weight:700}
+    .btn-primary{background:linear-gradient(135deg,var(--cyan),var(--violet));color:#07111b;box-shadow:0 0 28px rgba(72,215,255,.22)}
+    .btn-secondary{background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01))}
+    .hero-card,.control-bar,.entry,.footer-card,.note-card{background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.015));border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);position:relative;overflow:hidden}
+    .hero-card::after,.control-bar::after,.entry::after,.footer-card::after,.note-card::after{content:"";position:absolute;inset:0;background:linear-gradient(140deg, rgba(72,215,255,.035), transparent 45%, rgba(255,79,163,.04));pointer-events:none}
+    .hero-card{padding:var(--space-5)}
+    .hero-card h2,.section-head h2{margin:0 0 .55rem;font-family:var(--font-display);font-size:var(--text-xl);letter-spacing:.04em;text-transform:uppercase}
+    .signal-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-3);margin-top:var(--space-4)}
+    .signal{padding:1rem;border-radius:14px;background:linear-gradient(180deg, rgba(72,215,255,.08), rgba(141,125,255,.05));border:1px solid rgba(72,215,255,.12)}
+    .signal small{display:block;color:var(--faint);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.35rem}
+    .signal strong{display:block;font-size:1rem}
+    .section-head{display:flex;justify-content:space-between;align-items:end;gap:var(--space-4);margin-bottom:1rem}
+    .section-head p{margin:0;max-width:72ch;color:var(--muted)}
+    .control-bar{padding:var(--space-4);margin-bottom:1rem}
+    .control-grid{display:grid;grid-template-columns:1.5fr 1fr;gap:var(--space-4);align-items:start}
+    .search-input{width:100%;padding:1rem 1rem;border-radius:14px;border:1px solid var(--line);background:rgba(7,18,30,.82);outline:none}
+    .search-input:focus{border-color:rgba(72,215,255,.34);box-shadow:0 0 0 4px rgba(72,215,255,.08)}
+    .tag-filter-wrap h3{margin:0 0 .7rem;font-size:var(--text-sm);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+    .tag-filter-list{display:flex;flex-wrap:wrap;gap:.65rem}
+    .tag-filter{border:1px solid rgba(146,170,212,.18);background:rgba(255,255,255,.02);padding:.58rem .82rem;border-radius:999px;cursor:pointer;font-size:var(--text-xs);letter-spacing:.04em;transition:.18s ease}
+    .tag-filter.active{transform:translateY(-1px);box-shadow:0 0 0 1px rgba(255,255,255,.02), 0 0 24px rgba(72,215,255,.12)}
+    .tag-filter[data-tag="Branding"].active{background:rgba(72,215,255,.16);border-color:rgba(72,215,255,.42);color:var(--cyan)}
+    .tag-filter[data-tag="Language"].active{background:rgba(255,79,163,.16);border-color:rgba(255,79,163,.42);color:var(--magenta)}
+    .tag-filter[data-tag="URL"].active{background:rgba(141,125,255,.16);border-color:rgba(141,125,255,.42);color:var(--violet)}
+    .tag-filter[data-tag="Payloads"].active{background:rgba(255,184,77,.16);border-color:rgba(255,184,77,.42);color:var(--amber)}
+    .tag-filter[data-tag="Sender"].active{background:rgba(181,243,107,.16);border-color:rgba(181,243,107,.42);color:var(--lime)}
+    .results-meta{margin-top:.9rem;color:var(--muted);font-size:var(--text-sm)}
+    .list-head,.entry-summary{display:grid;grid-template-columns:minmax(180px,1.1fr) minmax(260px,1.45fr) minmax(220px,.95fr);gap:var(--space-4);align-items:center}
+    .list-head{padding:.3rem 1rem .8rem;color:var(--faint);font-size:var(--text-xs);text-transform:uppercase;letter-spacing:.14em}
+    .entries{display:grid;gap:var(--space-4)}
+    .entry{padding:0}
+    .entry-toggle{width:100%;text-align:left;background:none;border:0;color:inherit;padding:1.15rem 1.1rem 1rem;cursor:pointer}
+    .entry-toggle:hover .entry-summary{transform:translateY(-1px)}
+    .entry-summary{transition:transform .18s ease}
+    .entry-name strong{display:block;font-size:1.15rem}
+    .entry-name small{display:block;color:var(--faint);font-size:var(--text-xs);letter-spacing:.12em;text-transform:uppercase;margin-top:.25rem}
+    .entry-url a{color:var(--cyan);text-decoration:none;word-break:break-all}
+    .entry-tags{display:flex;flex-wrap:wrap;gap:.55rem;justify-content:flex-start}
+    .pill{display:inline-flex;align-items:center;padding:.45rem .72rem;border-radius:999px;font-size:var(--text-xs);border:1px solid var(--line);background:rgba(255,255,255,.02)}
+    .pill.branding{color:var(--cyan);border-color:rgba(72,215,255,.28);background:rgba(72,215,255,.09)}
+    .pill.language{color:var(--magenta);border-color:rgba(255,79,163,.28);background:rgba(255,79,163,.09)}
+    .pill.url{color:var(--violet);border-color:rgba(141,125,255,.28);background:rgba(141,125,255,.09)}
+    .pill.payloads{color:var(--amber);border-color:rgba(255,184,77,.28);background:rgba(255,184,77,.09)}
+    .pill.sender{color:var(--lime);border-color:rgba(181,243,107,.28);background:rgba(181,243,107,.09)}
+    .expand-indicator{justify-self:end;color:var(--muted);font-size:1.25rem;transition:transform .2s ease}
+    .entry[open] .expand-indicator{transform:rotate(45deg);color:var(--cyan)}
+    .entry-body{padding:0 1.1rem 1.15rem;border-top:1px solid var(--line)}
+    .entry-grid{display:grid;grid-template-columns:1.05fr 1.2fr .95fr;gap:var(--space-4);padding-top:1rem}
+    .detail-block,.opsec-block,.main-block{padding:1rem;border-radius:14px;background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01));border:1px solid var(--line)}
+    .block-title{margin:0 0 .8rem;font-size:var(--text-sm);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+    .main-block p,.opsec-block p{margin:.45rem 0 0;color:var(--muted)}
+    .tag-detail-list{display:grid;gap:.8rem}
+    .tag-detail{padding:.9rem;border-radius:12px;border:1px solid var(--line);background:rgba(255,255,255,.02)}
+    .tag-detail strong{display:flex;align-items:center;gap:.55rem;margin-bottom:.35rem;font-size:var(--text-xs);letter-spacing:.12em;text-transform:uppercase}
+    .tag-detail p{margin:0;color:var(--muted)}
+    .tag-detail.branding strong{color:var(--cyan)}
+    .tag-detail.language strong{color:var(--magenta)}
+    .tag-detail.url strong{color:var(--violet)}
+    .tag-detail.payloads strong{color:var(--amber)}
+    .tag-detail.sender strong{color:var(--lime)}
+    .opsec-list{display:grid;gap:.8rem}
+    .opsec-item{padding:.85rem;border-radius:12px;background:rgba(255,255,255,.02);border:1px solid var(--line)}
+    .opsec-item strong{display:block;margin-bottom:.3rem;font-size:var(--text-xs);letter-spacing:.11em;text-transform:uppercase}
+    .opsec-item p{margin:0;color:var(--muted)}
+    .taxonomy{display:grid;grid-template-columns:repeat(5,1fr);gap:var(--space-4);margin-top:var(--space-10)}
+    .note-card{padding:var(--space-5)}
+    .note-card h3{margin:0 0 .45rem;font-size:var(--text-sm);letter-spacing:.12em;text-transform:uppercase}
+    .note-card p{margin:0;color:var(--muted)}
+    .footer-card{padding:var(--space-6);display:flex;justify-content:space-between;align-items:center;gap:var(--space-4);margin:var(--space-10) 0}
+    code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;background:rgba(72,215,255,.08);padding:.1rem .35rem;border-radius:8px}
+    @media (max-width:1180px){.hero-grid,.control-grid,.entry-grid,.taxonomy{grid-template-columns:1fr}.signal-grid{grid-template-columns:1fr}}
+    @media (max-width:900px){.list-head{display:none}.entry-summary{grid-template-columns:1fr}.expand-indicator{justify-self:start}}
+    @media (max-width:760px){.nav,.section-head,.footer-card{flex-direction:column;align-items:flex-start}h1{max-width:12ch}}
+  </style>
+</head>
+<body class="scanlines">
+  <a class="skip" href="#main">Skip to content</a>
+  <header>
+    <div class="shell nav">
+      <a class="brand" href="#top">
+        <div class="logo" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 7h16"/>
+            <path d="M4 12h10"/>
+            <path d="M4 17h13"/>
+            <path d="M16 10l3 2-3 2"/>
+          </svg>
+        </div>
+        <div>
+          <strong>LOTE</strong>
+          <span>Living Off Trusted Email</span>
+        </div>
+      </a>
+      <div class="nav-actions">
+        <a class="nav-btn" href="#directory">Directory</a>
+        <a class="nav-btn" href="#taxonomy">Taxonomy</a>
+        <button class="nav-btn" type="button" data-theme-toggle aria-label="Toggle theme">Theme</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="shell">
+    <section class="hero" id="top">
+      <div class="hero-grid">
+        <div>
+          <div class="eyebrow">Accordion directory · Tag-first filtering · JSON-driven detail text</div>
+          <h1>Track trusted email surfaces by service, URL, and category context.</h1>
+          <p class="lead">This version shifts fully to a tag-first model. The visible list only shows the service name, URL, and tags; selecting an entry expands it into a structured view with a main section, per-tag/category detail blocks loaded from JSON, and a separate opsec section for detections, cautions, and miscellaneous notes.</p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="#directory">Open directory</a>
+            <a class="btn btn-secondary" href="#taxonomy">See tag model</a>
+          </div>
+        </div>
+        <aside class="hero-card">
+          <h2>Operator view</h2>
+          <div class="signal-grid">
+            <div class="signal"><small>Visible columns</small><strong>Name · URL · Tags</strong></div>
+            <div class="signal"><small>Expansion model</small><strong>Accordion per entry</strong></div>
+            <div class="signal"><small>Filter logic</small><strong>Search + tags only</strong></div>
+            <div class="signal"><small>Secondary section</small><strong>Opsec notes</strong></div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="directory">
+      <div class="section-head">
+        <div>
+          <h2>LOTE directory</h2>
+          <p>Click a tag to filter the list, then expand any entry to inspect its tag-specific notes and opsec context. The sample data is embedded as JSON-style objects so you can replace it with your own evidence and hosting footprint details.</p>
+        </div>
+      </div>
+
+      <div class="control-bar">
+        <div class="control-grid">
+          <div>
+            <label class="sr-only" for="searchBox">Search entries</label>
+            <input id="searchBox" class="search-input" type="search" placeholder="Search service name, URL, tag detail, detection note, or caution text">
+            <div class="results-meta" id="resultsMeta">Showing all entries</div>
+          </div>
+          <div class="tag-filter-wrap">
+            <h3>Filter by tags</h3>
+            <div class="tag-filter-list" id="tagFilters"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="list-head" aria-hidden="true">
+        <div>Name</div>
+        <div>URL</div>
+        <div>Tags</div>
+      </div>
+
+      <div class="entries" id="entries"></div>
+    </section>
+
+    <section class="taxonomy" id="taxonomy">
+      <article class="note-card"><h3 style="color:var(--cyan)">Branding</h3><p>Visual identity, trust transfer, tenant presentation, and design cues that can influence recipient confidence.</p></article>
+      <article class="note-card"><h3 style="color:var(--magenta)">Language</h3><p>Subject line themes, urgency framing, collaboration wording, and copy patterns seen in the service workflow.</p></article>
+      <article class="note-card"><h3 style="color:var(--violet)">URL</h3><p>Hostnames, redirects, tenant paths, share links, and chained destinations relevant to triage or enrichment.</p></article>
+      <article class="note-card"><h3 style="color:var(--amber)">Payloads</h3><p>Files, previews, forms, destinations, or secondary actions associated with the service’s email-linked workflow.</p></article>
+      <article class="note-card"><h3 style="color:var(--lime)">Sender</h3><p>Display-name patterns, mail-path signals, tenant-authenticated sending, and sender-context mismatches.</p></article>
+    </section>
+  </main>
+
+  <footer class="shell">
+    <div class="footer-card">
+      <div>
+        <strong style="font-family:var(--font-display);font-size:var(--text-lg);letter-spacing:.04em;text-transform:uppercase">LOTE starter</strong>
+        <p style="margin:.35rem 0 0;color:var(--muted)">Static HTML for GitHub Pages. Rename to <code>index.html</code>, keep the tag schema consistent, and replace sample entries with your own original dataset.</p>
+      </div>
+      <a class="btn btn-secondary" href="#top">Back to top</a>
+    </div>
+  </footer>
+
+  <script>
+    const TAGS = ['Branding','Language','URL','Payloads','Sender'];
+
+    const entriesData = [
+      {
+        name: 'DocSend',
+        url: 'https://docsend.com',
+        tags: ['Branding','URL','Payloads','Sender'],
+        summary: 'Document-sharing platform commonly recognized in business workflows, useful here as a sample service entry with hosted-link trust signals.',
+        details: {
+          Branding: 'The branded viewer and polished document-delivery experience can make a shared resource feel routine, especially when the recipient already expects investor, sales, or legal collateral.',
+          Language: 'Common themes revolve around review requests, secure document access, follow-up material, or time-sensitive reading prompts tied to a business workflow.',
+          URL: 'Review docsend-hosted links, vanity subpaths, and downstream redirect behavior if the document experience hands off to another destination.',
+          Payloads: 'Primary payloads tend to be hosted documents, previews, or gated downloads rather than direct executable delivery.',
+          Sender: 'Assess whether the sender identity plausibly matches the document context, relationship, and hosted destination.'
+        },
+        opsec: {
+          Detections: 'Flag first-time DocSend delivery to users who do not commonly receive document-share emails, especially when followed by redirect chains or unusual login prompts.',
+          Cautions: 'Do not treat brand familiarity alone as a positive signal; the hosted document context and sender relationship still need verification.',
+          Notes: 'Good candidate for linking trust-transfer observations with click telemetry and downstream destination analysis.'
+        }
+      },
+      {
+        name: 'SendGrid',
+        url: 'https://sendgrid.com',
+        tags: ['Branding','Language','Sender','URL'],
+        summary: 'Email-delivery infrastructure that can lend legitimacy to transactional-looking messages and automated sender patterns.',
+        details: {
+          Branding: 'Recipients may implicitly trust the mail path when the message resembles a platform-generated notification or business workflow alert.',
+          Language: 'Copy often imitates account events, invoices, support updates, or other transactional patterns that feel operational instead of promotional.',
+          URL: 'Inspect tracked-link domains, click-redirect layers, and any mismatch between visible brand and final destination.',
+          Payloads: 'Delivery is usually link-centric, with action buttons or embedded URLs doing most of the work.',
+          Sender: 'Authenticated sending and tenant-configured identities make sender-context review especially important.'
+        },
+        opsec: {
+          Detections: 'Look for spikes in first-seen sender combinations, unusual categories of message content, and redirect-heavy click paths coming from delivery infrastructure.',
+          Cautions: 'A technically valid sender does not automatically mean the business relationship is legitimate.',
+          Notes: 'Correlate envelope sender, visible from, reply-to, and destination clustering.'
+        }
+      },
+      {
+        name: 'HubSpot',
+        url: 'https://hubspot.com',
+        tags: ['Branding','Language','Sender'],
+        summary: 'CRM and outreach platform whose normal sales and customer-success patterns can overlap with suspicious contact attempts.',
+        details: {
+          Branding: 'Realistic templates and business-looking outreach formats can make messages appear routine to recipients who regularly interact with vendors.',
+          Language: 'Phrases around scheduling, checking in, sharing resources, or revisiting a previous conversation are especially relevant here.',
+          URL: 'Embedded links may route to meeting pages, assets, or lead-capture destinations associated with tenant-managed campaigns.',
+          Payloads: 'Most payloads are indirect, using meeting links, shared collateral, or follow-up landing pages.',
+          Sender: 'Persona-driven sending means the sender may look like an individual stakeholder instead of a generic platform notice.'
+        },
+        opsec: {
+          Detections: 'Score relationship mismatches, such as outreach to users with no vendor history or no business reason to receive campaign-like messages.',
+          Cautions: 'Some workflows are genuinely human-written, so sender authentication alone is not enough to classify intent.',
+          Notes: 'Useful for studying the overlap between business-email compromise pretexting and SaaS-assisted outreach.'
+        }
+      },
+      {
+        name: 'Canva',
+        url: 'https://canva.com',
+        tags: ['Branding','URL','Language'],
+        summary: 'Design and collaboration platform that can introduce polished assets and hosted review links into email narratives.',
+        details: {
+          Branding: 'High-quality visual assets can increase perceived professionalism and reduce suspicion before the recipient evaluates the underlying request.',
+          Language: 'Shared design, presentation update, campaign asset review, or collaborative feedback prompts are common narrative wrappers.',
+          URL: 'Examine hosted design-share links and whether they remain within the expected collaboration flow or jump into unrelated infrastructure.',
+          Payloads: 'The workflow usually revolves around hosted content or preview pages, not direct attachments.',
+          Sender: 'The sender may pose as a designer, marketing lead, or partner to align with the collaboration theme.'
+        },
+        opsec: {
+          Detections: 'Watch for collaboration-themed email bursts to recipients outside creative or marketing functions, especially with first-seen link patterns.',
+          Cautions: 'Visually polished messages can bias analysts toward trusting them too quickly.',
+          Notes: 'A good fit for tracking how presentation quality affects click behavior.'
+        }
+      },
+      {
+        name: 'Dropbox Sign',
+        url: 'https://sign.dropbox.com',
+        tags: ['Language','URL','Sender','Payloads'],
+        summary: 'Signature-request workflow with built-in urgency and a strong expectation of quick user action.',
+        details: {
+          Branding: 'Signature interfaces inherit trust from common approval processes and can appear normal to business users handling documents daily.',
+          Language: 'Urgent sign-now or review-and-complete language is a core trust lever in this workflow.',
+          URL: 'Review whether the user remains on expected signature domains and whether any follow-on redirects appear after the initial click.',
+          Payloads: 'Payload behavior typically centers on document views, forms, and secondary action pages rather than traditional file attachments.',
+          Sender: 'The apparent sender may be framed as a colleague, vendor, or legal stakeholder tied to the document process.'
+        },
+        opsec: {
+          Detections: 'Prioritize review of first-time signature notices, cross-tenant approval requests, and requests lacking a recognizable business context.',
+          Cautions: 'Recipients are conditioned to act quickly on signing workflows, which can suppress normal skepticism.',
+          Notes: 'Useful category for combining sender-context and urgency scoring.'
+        }
+      },
+      {
+        name: 'Mailchimp',
+        url: 'https://mailchimp.com',
+        tags: ['Branding','Sender','URL'],
+        summary: 'Mass-mail platform that demonstrates how familiar campaign formatting and tracked links can normalize suspicious content.',
+        details: {
+          Branding: 'Newsletter-style layouts and routine footer elements can make a message feel like standard marketing communication.',
+          Language: 'Announcements, reminders, promotions, and account-style updates can all be wrapped into campaign messaging patterns.',
+          URL: 'Tracked links and campaign redirects should be reviewed for domain consistency and final-destination behavior.',
+          Payloads: 'The platform usually emphasizes clickthrough paths over direct attachment delivery.',
+          Sender: 'Tenant ownership, visible sender branding, and unsubscribe context are useful signals when triaging these messages.'
+        },
+        opsec: {
+          Detections: 'Identify campaign messages sent to users with no apparent subscription or prior relationship, especially if the links jump to unrelated infrastructure.',
+          Cautions: 'Routine mass-mail styling can make false trust assumptions easy, even when content is out of place.',
+          Notes: 'Helpful for comparing sender legitimacy signals against recipient relevance.'
+        }
+      },
+      {
+        name: 'Google Sites',
+        url: 'https://sites.google.com',
+        tags: ['Branding','URL','Payloads'],
+        summary: 'Hosted pages under a highly trusted ecosystem that can act as intermediate landing points in email-driven workflows.',
+        details: {
+          Branding: 'The broader Google trust halo can extend to lightweight hosted pages even when the content itself deserves scrutiny.',
+          Language: 'Messages often frame the destination as a shared document hub, secure notice, HR resource, or invoice portal.',
+          URL: 'Sites links, path structures, and any chained destinations should be preserved during triage because the first hop may not be the final one.',
+          Payloads: 'Hosted pages can route into forms, login prompts, storage links, or additional hosted content.',
+          Sender: 'The sender identity may not obviously match the hosting platform, which makes trust transfer analysis important.'
+        },
+        opsec: {
+          Detections: 'Look for external sender identities pushing recipients into first-time Google Sites URLs or pages with thin content and immediate onward actions.',
+          Cautions: 'A familiar Google hostname should not short-circuit destination validation.',
+          Notes: 'Useful for studying intermediate-hop trust and hosted-page enrichment.'
+        }
+      },
+      {
+        name: 'Notion',
+        url: 'https://notion.so',
+        tags: ['Branding','Language','Payloads','Sender'],
+        summary: 'Collaboration and workspace platform that can support document, onboarding, or internal-note narratives in email lures.',
+        details: {
+          Branding: 'The workspace look-and-feel feels modern and legitimate, especially for tech-oriented or distributed teams.',
+          Language: 'Messages often reference onboarding docs, team updates, policy notes, or shared resources that invite low-friction clicks.',
+          URL: 'Shared page links should be reviewed for workspace context, slugs, and any embedded redirects or external handoffs.',
+          Payloads: 'Payloads are usually presented as workspace pages, embedded forms, or linked resources rather than downloads.',
+          Sender: 'Collaborative context means the sender may appear as a teammate, contractor, or project owner instead of a platform system identity.'
+        },
+        opsec: {
+          Detections: 'Highlight first-time Notion notifications to users outside collaborative functions or recipients who do not normally receive workspace invites.',
+          Cautions: 'Shared-workspace pretexts can feel normal enough that recipients skip validation.',
+          Notes: 'Good dataset candidate for collaboration-themed sender impersonation studies.'
+        }
+      },
+      {
+        name: 'SharePoint Online',
+        url: 'https://microsoft.sharepoint.com',
+        tags: ['Branding','URL','Payloads','Sender'],
+        summary: 'Enterprise document-hosting and sharing surface that appears naturally in many business email workflows.',
+        details: {
+          Branding: 'Strong Microsoft trust and enterprise familiarity can carry over to hosted file or portal links.',
+          Language: 'Typical narrative themes include secure documents, shared files, voicemails, invoice packages, or internal review requests.',
+          URL: 'Tenant names, path structures, and redirect behavior are key because they often carry context about legitimacy or abuse staging.',
+          Payloads: 'The platform can front document previews, archive retrieval, form handoff, or additional cloud-hosted content.',
+          Sender: 'Cross-check the sender against tenant relevance, expected collaboration patterns, and the recipient’s actual relationship to the shared content.'
+        },
+        opsec: {
+          Detections: 'Prioritize new tenant-share notifications, generic lures tied to SharePoint URLs, and suspicious combinations of external sender plus enterprise-hosted document path.',
+          Cautions: 'Microsoft branding can overpower weaker warning signs if analysts rely too heavily on hostname trust.',
+          Notes: 'A strong anchor entry for mapping how enterprise trust carries across hosted links.'
+        }
+      },
+      {
+        name: 'Constant Contact',
+        url: 'https://constantcontact.com',
+        tags: ['Branding','Sender','Language'],
+        summary: 'Campaign platform that illustrates how routine brand-comms tooling can overlap with suspicious sender behavior.',
+        details: {
+          Branding: 'Template-heavy campaign messages can feel ordinary, especially for users accustomed to newsletters and external updates.',
+          Language: 'Reminders, updates, announcements, and event prompts are familiar enough to reduce suspicion in some contexts.',
+          URL: 'Campaign links and redirects should be reviewed for final destinations and relationship to the message theme.',
+          Payloads: 'The service usually supports click-based destinations rather than attachment-heavy workflows.',
+          Sender: 'Sender legitimacy depends heavily on whether the recipient actually has a reason to expect communication from that organization.'
+        },
+        opsec: {
+          Detections: 'Watch for campaign-style delivery that lacks a clear subscriber relationship or targets unusual recipient groups.',
+          Cautions: 'Routine marketing formatting can hide contextual anomalies in plain sight.',
+          Notes: 'Useful for comparing relevance-based trust against template-driven legitimacy.'
+        }
+      }
+    ];
+
+    const entriesEl = document.getElementById('entries');
+    const searchBox = document.getElementById('searchBox');
+    const tagFiltersEl = document.getElementById('tagFilters');
+    const resultsMeta = document.getElementById('resultsMeta');
+    const root = document.documentElement;
+    const themeToggle = document.querySelector('[data-theme-toggle]');
+    let activeTags = new Set();
+
+    function tagClass(tag){
+      const map = {Branding:'branding',Language:'language',URL:'url',Payloads:'payloads',Sender:'sender'};
+      return map[tag] || '';
+    }
+
+    function renderTagFilters(){
+      tagFiltersEl.innerHTML = '';
+      TAGS.forEach(tag => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'tag-filter' + (activeTags.has(tag) ? ' active' : '');
+        btn.dataset.tag = tag;
+        btn.textContent = tag;
+        btn.addEventListener('click', () => {
+          if(activeTags.has(tag)) activeTags.delete(tag); else activeTags.add(tag);
+          renderTagFilters();
+          applyFilters();
+        });
+        tagFiltersEl.appendChild(btn);
+      });
+    }
+
+    function matchesSearch(entry, q){
+      if(!q) return true;
+      const haystack = [
+        entry.name,
+        entry.url,
+        entry.summary,
+        ...entry.tags,
+        ...Object.values(entry.details),
+        ...Object.values(entry.opsec)
+      ].join(' ').toLowerCase();
+      return haystack.includes(q);
+    }
+
+    function matchesTags(entry){
+      if(activeTags.size === 0) return true;
+      return [...activeTags].every(tag => entry.tags.includes(tag));
+    }
+
+    function renderEntries(items){
+      entriesEl.innerHTML = '';
+      if(!items.length){
+        entriesEl.innerHTML = `<article class="entry" style="padding:1.2rem"><strong style="display:block;font-size:1.1rem">No matching entries</strong><p style="margin:.5rem 0 0;color:var(--muted)">Try clearing one or more tag filters or using a broader search term.</p></article>`;
+        return;
+      }
+
+      items.forEach(entry => {
+        const details = document.createElement('details');
+        details.className = 'entry';
+        const visibleTagPills = entry.tags.map(tag => `<span class="pill ${tagClass(tag)}">${tag}</span>`).join('');
+        const detailBlocks = TAGS.filter(tag => entry.details[tag]).map(tag => `
+          <div class="tag-detail ${tagClass(tag)}">
+            <strong>${tag}</strong>
+            <p>${entry.details[tag]}</p>
+          </div>
+        `).join('');
+        const opsecBlocks = Object.entries(entry.opsec).map(([label, text]) => `
+          <div class="opsec-item">
+            <strong>${label}</strong>
+            <p>${text}</p>
+          </div>
+        `).join('');
+
+        details.innerHTML = `
+          <summary class="entry-toggle">
+            <div class="entry-summary">
+              <div class="entry-name">
+                <strong>${entry.name}</strong>
+                <small>Click to expand</small>
+              </div>
+              <div class="entry-url"><a href="${entry.url}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">${entry.url}</a></div>
+              <div class="entry-tags">${visibleTagPills}<span class="expand-indicator">+</span></div>
+            </div>
+          </summary>
+          <div class="entry-body">
+            <div class="entry-grid">
+              <section class="main-block">
+                <h3 class="block-title">Main section</h3>
+                <div class="pill ${tagClass(entry.tags[0] || 'Branding')}" style="margin-bottom:.75rem">${entry.name}</div>
+                <p>${entry.summary}</p>
+                <p><strong style="color:var(--text)">URL:</strong> <a href="${entry.url}" target="_blank" rel="noopener noreferrer" style="color:var(--cyan)">${entry.url}</a></p>
+                <div class="entry-tags" style="margin-top:1rem">${visibleTagPills}</div>
+              </section>
+              <section class="detail-block">
+                <h3 class="block-title">Tag details</h3>
+                <div class="tag-detail-list">${detailBlocks}</div>
+              </section>
+              <section class="opsec-block">
+                <h3 class="block-title">Opsec notes</h3>
+                <div class="opsec-list">${opsecBlocks}</div>
+              </section>
+            </div>
+          </div>
+        `;
+        entriesEl.appendChild(details);
+      });
+    }
+
+    function applyFilters(){
+      const q = searchBox.value.trim().toLowerCase();
+      const filtered = entriesData.filter(entry => matchesSearch(entry, q) && matchesTags(entry));
+      renderEntries(filtered);
+      const tagText = activeTags.size ? ` · active tags: ${[...activeTags].join(', ')}` : '';
+      resultsMeta.textContent = `Showing ${filtered.length} of ${entriesData.length} entries${tagText}`;
+    }
+
+    searchBox.addEventListener('input', applyFilters);
+    themeToggle.addEventListener('click', () => {
+      root.dataset.theme = root.dataset.theme === 'light' ? 'dark' : 'light';
+    });
+
+    renderTagFilters();
+    applyFilters();
+  </script>
+</body>
+</html>
