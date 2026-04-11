@@ -1,0 +1,84 @@
+# OS junk
+.DS_Store
+Thumbs.db
+desktop.ini
+.Spotlight-V100/
+.Trashes/
+._*
+
+# JetBrains / IntelliJ IDEA
+.idea/**/workspace.xml
+.idea/**/tasks.xml
+.idea/**/usage.statistics.xml
+.idea/**/dictionaries/
+.idea/**/shelf/
+.idea/**/contentModel.xml
+.idea/**/dataSources/
+.idea/**/dataSources.ids
+.idea/**/dataSources.local.xml
+.idea/**/sqlDataSources.xml
+.idea/**/dynamic.xml
+.idea/**/uiDesigner.xml
+.idea/**/dbnavigator.xml
+.idea/**/gradle.xml
+.idea/**/libraries/
+.idea/**/mongoSettings.xml
+.idea/**/sonarlint/
+.idea/**/sonarIssues.xml
+.idea/**/markdown-navigator.xml
+.idea/**/markdown-navigator-enh.xml
+.idea/**/markdown-navigator/
+.idea/**/aws.xml
+.idea/**/azureSettings.xml
+.idea/**/httpRequests/
+.idea/caches/build_file_checksums.ser
+*.iws
+out/
+.idea_modules/
+
+# Optional JetBrains project files
+# Uncomment if you do NOT want to share project metadata
+# .idea/modules.xml
+# .idea/*.iml
+# .idea/modules/
+# *.iml
+# *.ipr
+
+# VS Code
+.vscode/
+
+# Node / package managers
+node_modules/
+.npm/
+.pnpm-store/
+.yarn/
+
+# Build output / temp files
+/dist/
+/build/
+/.cache/
+/tmp/
+/temp/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Env / secrets
+.env
+.env.*
+*.local
+
+# Archives
+*.zip
+*.tar
+*.gz
+*.tgz
+*.7z
+
+# Python cache
+__pycache__/
+*.pyc
