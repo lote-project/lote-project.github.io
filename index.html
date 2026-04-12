@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>LOTE — Living Off Trusted Email</title>
-  <meta name="description" content="LOTE is a public directory for SaaS/Cloud platforms which provide trusted email services that can be leveraged by offensive cybersecurity professionals.">
+  <title>LOTE - Living Off Trusted Email</title>
+  <meta name="description" content="LOTE is a public directory for SaaS/Cloud platforms which provide trusted email services that can be leveraged by attackers and offensive cybersecurity professionals alike.">
   <link rel="preconnect" href="https://api.fontshare.com">
   <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&f[]=clash-display@500,600,700&display=swap" rel="stylesheet">
   <style>
@@ -85,7 +85,7 @@
     .hero{padding:clamp(3.4rem,8vw,7rem) 0 2.5rem}
     .hero-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:var(--space-8);align-items:start}
     .eyebrow{display:inline-flex;align-items:center;gap:.55rem;padding:.5rem .8rem;border-radius:999px;border:1px solid rgba(72,215,255,.18);background:rgba(18,35,56,.6);color:var(--cyan);font-size:var(--text-xs);letter-spacing:.12em;text-transform:uppercase}
-    h1{margin:1rem 0 1rem;font-family:var(--font-display);font-size:clamp(3rem,7vw,6.3rem);line-height:.9;letter-spacing:-.05em;max-width:11ch;text-transform:uppercase}
+    h1{margin:1rem 0 1rem;font-family:var(--font-display);font-size:clamp(3rem,7vw,6.3rem);line-height:.9;max-width:11ch;text-transform:uppercase}
     .lead{margin:0 0 var(--space-6);max-width:68ch;color:var(--muted)}
     .cta-row{display:flex;gap:var(--space-3);flex-wrap:wrap}
     .btn{display:inline-flex;align-items:center;gap:.65rem;padding:1rem 1.2rem;border-radius:999px;text-decoration:none;border:1px solid var(--line);font-weight:700}
@@ -94,13 +94,16 @@
     .hero-card,.control-bar,.entry,.footer-card,.note-card{background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.015));border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);position:relative;overflow:hidden}
     .hero-card::after,.control-bar::after,.entry::after,.footer-card::after,.note-card::after{content:"";position:absolute;inset:0;background:linear-gradient(140deg, rgba(72,215,255,.035), transparent 45%, rgba(255,79,163,.04));pointer-events:none}
     .hero-card{padding:var(--space-5)}
-    .hero-card h2,.section-head h2{margin:0 0 .55rem;font-family:var(--font-display);font-size:var(--text-xl);letter-spacing:.04em;text-transform:uppercase}
+    .hero-card h2,.section-head h2 {margin:0 0 .55rem;font-family:var(--font-display);font-size:var(--text-xl);letter-spacing:.04em;text-transform:uppercase}
+    .footer-head h2{margin:2.5rem 0 0;font-family:var(--font-display);font-size:var(--text-xl);letter-spacing:.04em;text-transform:uppercase}
     .signal-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-3);margin-top:var(--space-4)}
     .signal{padding:1rem;border-radius:14px;background:linear-gradient(180deg, rgba(72,215,255,.08), rgba(141,125,255,.05));border:1px solid rgba(72,215,255,.12)}
     .signal small{display:block;color:var(--faint);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.35rem}
     .signal strong{display:block;font-size:1rem}
     .section-head{display:flex;justify-content:space-between;align-items:end;gap:var(--space-4);margin-bottom:1rem}
+    .footer-head{display:flex;justify-content:space-between;align-items:end;gap:var(--space-4);margin-bottom:1rem}
     .section-head p{margin:0;max-width:72ch;color:var(--muted)}
+    .footer-head p{margin:0;max-width:72ch;color:var(--muted)}
     .control-bar{padding:var(--space-4);margin-bottom:1rem}
     .control-grid{display:grid;grid-template-columns:1.5fr 1fr;gap:var(--space-4);align-items:start}
     .search-input{width:100%;padding:1rem 1rem;border-radius:14px;border:1px solid var(--line);background:rgba(7,18,30,.82);outline:none}
@@ -112,7 +115,7 @@
     .tag-filter[data-tag="Branding"].active{background:rgba(72,215,255,.16);border-color:rgba(72,215,255,.42);color:var(--cyan)}
     .tag-filter[data-tag="Language"].active{background:rgba(255,79,163,.16);border-color:rgba(255,79,163,.42);color:var(--magenta)}
     .tag-filter[data-tag="URL"].active{background:rgba(141,125,255,.16);border-color:rgba(141,125,255,.42);color:var(--violet)}
-    .tag-filter[data-tag="Payloads"].active{background:rgba(255,184,77,.16);border-color:rgba(255,184,77,.42);color:var(--amber)}
+    .tag-filter[data-tag="Payload"].active{background:rgba(255,184,77,.16);border-color:rgba(255,184,77,.42);color:var(--amber)}
     .tag-filter[data-tag="Sender"].active{background:rgba(181,243,107,.16);border-color:rgba(181,243,107,.42);color:var(--lime)}
     .results-meta{margin-top:.9rem;color:var(--muted);font-size:var(--text-sm)}
     .list-head,.entry-summary{display:grid;grid-template-columns:minmax(180px,1.1fr) minmax(260px,1.45fr) minmax(220px,.95fr);gap:var(--space-4);align-items:center}
@@ -122,7 +125,7 @@
     .entry-toggle{width:100%;text-align:left;background:none;border:0;color:inherit;padding:1.15rem 1.1rem 1rem;cursor:pointer}
     .entry-toggle:hover .entry-summary{transform:translateY(-1px)}
     .entry-summary{transition:transform .18s ease}
-    .entry-name strong{display:block;font-size:1.15rem}
+    .entry-name strong{display:block;font-size:1.15rem;}
     .entry-name small{display:block;color:var(--faint);font-size:var(--text-xs);letter-spacing:.12em;text-transform:uppercase;margin-top:.25rem}
     .entry-url a{color:var(--cyan);text-decoration:none;word-break:break-all}
     .entry-tags{display:flex;flex-wrap:wrap;gap:.55rem;justify-content:flex-start}
@@ -130,10 +133,8 @@
     .pill.branding{color:var(--cyan);border-color:rgba(72,215,255,.28);background:rgba(72,215,255,.09)}
     .pill.language{color:var(--magenta);border-color:rgba(255,79,163,.28);background:rgba(255,79,163,.09)}
     .pill.url{color:var(--violet);border-color:rgba(141,125,255,.28);background:rgba(141,125,255,.09)}
-    .pill.payloads{color:var(--amber);border-color:rgba(255,184,77,.28);background:rgba(255,184,77,.09)}
+    .pill.payload{color:var(--amber);border-color:rgba(255,184,77,.28);background:rgba(255,184,77,.09)}
     .pill.sender{color:var(--lime);border-color:rgba(181,243,107,.28);background:rgba(181,243,107,.09)}
-    .expand-indicator{justify-self:end;color:var(--muted);font-size:1.25rem;transition:transform .2s ease}
-    .entry[open] .expand-indicator{transform:rotate(45deg);color:var(--cyan)}
     .entry-body{padding:0 1.1rem 1.15rem;border-top:1px solid var(--line)}
     .entry-grid{display:grid;grid-template-columns:1.05fr 1.2fr .95fr;gap:var(--space-4);padding-top:1rem}
     .detail-block,.opsec-block,.main-block{padding:1rem;border-radius:14px;background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01));border:1px solid var(--line)}
@@ -146,7 +147,7 @@
     .tag-detail.branding strong{color:var(--cyan)}
     .tag-detail.language strong{color:var(--magenta)}
     .tag-detail.url strong{color:var(--violet)}
-    .tag-detail.payloads strong{color:var(--amber)}
+    .tag-detail.payload strong{color:var(--amber)}
     .tag-detail.sender strong{color:var(--lime)}
     .opsec-list{display:grid;gap:.8rem}
     .opsec-item{padding:.85rem;border-radius:12px;background:rgba(255,255,255,.02);border:1px solid var(--line)}
@@ -156,8 +157,17 @@
     .note-card{padding:var(--space-5)}
     .note-card h3{margin:0 0 .45rem;font-size:var(--text-sm);letter-spacing:.12em;text-transform:uppercase}
     .note-card p{margin:0;color:var(--muted)}
-    .footer-card{padding:var(--space-6);display:flex;justify-content:space-between;align-items:center;gap:var(--space-4);margin:var(--space-10) 0}
+    .footer-card{padding:var(--space-6);display:flex;justify-content:space-between;align-items:center;gap:var(--space-4);margin:0 0 var(--space-10) 0}
     code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;background:rgba(72,215,255,.08);padding:.1rem .35rem;border-radius:8px}
+    details > summary {
+      list-style: none;
+    }
+    details > summary::-webkit-details-marker {
+      display: none;
+    }
+    details > summary::marker {
+      content: "";
+    }
     @media (max-width:1180px){.hero-grid,.control-grid,.entry-grid,.taxonomy{grid-template-columns:1fr}.signal-grid{grid-template-columns:1fr}}
     @media (max-width:900px){.list-head{display:none}.entry-summary{grid-template-columns:1fr}.expand-indicator{justify-self:start}}
     @media (max-width:760px){.nav,.section-head,.footer-card{flex-direction:column;align-items:flex-start}h1{max-width:12ch}}
@@ -177,8 +187,8 @@
           </svg>
         </div>
         <div>
-          <strong>LOTE-PROJECT.GITHUB.IO</strong>
-          <span>from tumikoto with ❤</span>
+          <strong>THE LOTE PROJECT</strong>
+          <span>from tumikoto with l❤ve</span>
         </div>
       </a>
       <div class="nav-actions">
@@ -219,11 +229,11 @@
     </div>
 
     <section class="taxonomy" id="taxonomy">
-      <article class="note-card"><h3 style="color:var(--magenta)">Language</h3><p>Platforms which allow arbitrary text to be included in sent emails.</p></article>
-      <article class="note-card"><h3 style="color:var(--cyan)">Branding</h3><p>Platforms which allow arbitrary images or company name to be included in sent emails in a manner distinct from arbitrary text insertion (i.e., displayed prominently). </p></article>
-      <article class="note-card"><h3 style="color:var(--violet)">URL</h3><p>Platforms which allow arbitrary URL to be included in sent emails in a manner distinct from arbitrary text insertion (e.g., anchor tag, button, meeting location, etc.).</p></article>
-      <article class="note-card"><h3 style="color:var(--amber)">Payloads</h3><p>Platforms which allow either direct file attachments with sent emails or whose emails are designed to link directly to a file hosted on their platform.</p></article>
-      <article class="note-card"><h3 style="color:var(--lime)">Sender</h3><p>Platforms which allow users to customize the display name used in the source address for the sent email.</p></article>
+      <article class="note-card"><h3 style="color:var(--magenta)">Language</h3><p>Platforms which allow arbitrary text to be included in sent emails. If arbitrary text can include HTML tags, additional applicable tags may apply.</p></article>
+      <article class="note-card"><h3 style="color:var(--cyan)">Branding</h3><p>Platforms which allow arbitrary images or company name to be included in sent emails in a manner distinct from arbitrary text insertion (i.e., prominent styles). </p></article>
+      <article class="note-card"><h3 style="color:var(--violet)">URL</h3><p>Platforms which allow arbitrary URLs to be included in sent emails in a manner distinct from arbitrary text insertion (e.g., anchor tag, button, meeting location, etc.).</p></article>
+      <article class="note-card"><h3 style="color:var(--amber)">Payload</h3><p>Platforms which allow either direct file attachments with sent emails or whose emails are designed to link directly to a file hosted on their platform.</p></article>
+      <article class="note-card"><h3 style="color:var(--lime)">Sender</h3><p>Platforms which allow users to customize the display name used in the source address for the sent email or otheriwse mask the user by sending from a generic address.</p></article>
     </section>
 
     <section id="directory">
@@ -260,180 +270,141 @@
 
   </main>
 
+
+
   <footer class="shell">
-    <div class="footer-card" id="contribute-header">
+    <div class="footer-head" id="contribute-header">
+      <h2>Contribute</h2>
+    </div>
+    <div class="footer-card">
       <div>
-        <strong style="font-family:var(--font-display);font-size:var(--text-lg);letter-spacing:.04em;text-transform:uppercase">SUGGESTIONS?</strong>
-        <p style="margin:.35rem 0 0;color:var(--muted)">Feel free to reach out with any corrections, contributions, or other ideas to help improve this project for the community.</p>
+        <p style="margin:.35rem 0 0;color:var(--muted)">Got suggestions? Submit a PR for any corrections, contributions, or other ideas to help improve this project for the community.</p>
       </div>
       <a class="btn btn-secondary" href="https://github.com/lote-project/lote-project.github.io">GITHUB REPO</a>
     </div>
   </footer>
 
   <script>
-    const TAGS = ['Branding','Language','URL','Payloads','Sender'];
+    const TAGS = ['Branding','Language','URL','Payload','Sender'];
 
     const entriesData = [
       {
-        name: 'DocSend (DEMO)',
-        url: 'https://docsend.com',
-        tags: ['Branding','URL','Payloads','Sender'],
-        summary: 'Document-sharing platform commonly recognized in business workflows, useful here as a sample service entry with hosted-link trust signals.',
+        name: 'ScreenConnect',
+        url: 'https://screenconnect.com',
+        tags: ['Language', 'Branding','URL','Payload','Sender'],
+        summary: 'Google is just a search engine... or is it?',
         details: {
-          Branding: 'The branded viewer and polished document-delivery experience can make a shared resource feel routine, especially when the recipient already expects investor, sales, or legal collateral.',
-          Language: 'Common themes revolve around review requests, secure document access, follow-up material, or time-sensitive reading prompts tied to a business workflow.',
-          URL: 'Review docsend-hosted links, vanity subpaths, and downstream redirect behavior if the document experience hands off to another destination.',
-          Payloads: 'Primary payloads tend to be hosted documents, previews, or gated downloads rather than direct executable delivery.',
-          Sender: 'Assess whether the sender identity plausibly matches the document context, relationship, and hosted destination.'
+          Language: 'Platform allows insertion of a short text comment within the team member invitation email template.',
+          Branding: 'Platform allows configuration of team branding items such as a logo and company name, which are then included in any subsequent invitation emails sent to newly added members.',
+          URL: 'Platform allows configuration of a meeting location, which can be set to an arbitrary URL instead of a physical address, and is then included in any subsequent meeting invitations.',
+          Payload: 'Platform allows hosting of various file types which can be shared via a platform-initiated email to arbitrary recipients that includes a hyperlink to the shared file.',
+          Sender: 'Platform emails are sent from a generic address, noreply@google.com, using the configured account name as the sender display name.'
         },
         opsec: {
-          Detections: 'Flag first-time DocSend delivery to users who do not commonly receive document-share emails, especially when followed by redirect chains or unusual login prompts.',
-          Cautions: 'Do not treat brand familiarity alone as a positive signal; the hosted document context and sender relationship still need verification.',
-          Notes: 'Good candidate for linking trust-transfer observations with click telemetry and downstream destination analysis.'
+          Blue: 'Your feeble skills are no match for the power of the dark side.',
+          Red: 'You have been well trained, my young apprentice. They will be no match for you.'
         }
       },
       {
-        name: 'SendGrid (DEMO)',
-        url: 'https://sendgrid.com',
-        tags: ['Branding','Language','Sender','URL'],
-        summary: 'Email-delivery infrastructure that can lend legitimacy to transactional-looking messages and automated sender patterns.',
+        name: 'EventCreate',
+        url: 'https://eventcreate.com',
+        tags: ['Language', 'Branding','URL','Payload','Sender'],
+        summary: 'Google is just a search engine... or is it?',
         details: {
-          Branding: 'Recipients may implicitly trust the mail path when the message resembles a platform-generated notification or business workflow alert.',
-          Language: 'Copy often imitates account events, invoices, support updates, or other transactional patterns that feel operational instead of promotional.',
-          URL: 'Inspect tracked-link domains, click-redirect layers, and any mismatch between visible brand and final destination.',
-          Payloads: 'Delivery is usually link-centric, with action buttons or embedded URLs doing most of the work.',
-          Sender: 'Authenticated sending and tenant-configured identities make sender-context review especially important.'
+          Language: 'Platform allows insertion of a short text comment within the team member invitation email template.',
+          Branding: 'Platform allows configuration of team branding items such as a logo and company name, which are then included in any subsequent invitation emails sent to newly added members.',
+          URL: 'Platform allows configuration of a meeting location, which can be set to an arbitrary URL instead of a physical address, and is then included in any subsequent meeting invitations.',
+          Payload: 'Platform allows hosting of various file types which can be shared via a platform-initiated email to arbitrary recipients that includes a hyperlink to the shared file.',
+          Sender: 'Platform emails are sent from a generic address, noreply@google.com, using the configured account name as the sender display name.'
         },
         opsec: {
-          Detections: 'Look for spikes in first-seen sender combinations, unusual categories of message content, and redirect-heavy click paths coming from delivery infrastructure.',
-          Cautions: 'A technically valid sender does not automatically mean the business relationship is legitimate.',
-          Notes: 'Correlate envelope sender, visible from, reply-to, and destination clustering.'
+          Blue: 'Your feeble skills are no match for the power of the dark side.',
+          Red: 'You have been well trained, my young apprentice. They will be no match for you.'
         }
       },
       {
-        name: 'HubSpot (DEMO)',
-        url: 'https://hubspot.com',
-        tags: ['Branding','Language','Sender'],
-        summary: 'CRM and outreach platform whose normal sales and customer-success patterns can overlap with suspicious contact attempts.',
+        name: 'SharePoint & OneDrive',
+        url: 'https://m365.cloud.microsoft/',
+        tags: ['Language', 'Branding','URL','Payload','Sender'],
+        summary: 'Google is just a search engine... or is it?',
         details: {
-          Branding: 'Realistic templates and business-looking outreach formats can make messages appear routine to recipients who regularly interact with vendors.',
-          Language: 'Phrases around scheduling, checking in, sharing resources, or revisiting a previous conversation are especially relevant here.',
-          URL: 'Embedded links may route to meeting pages, assets, or lead-capture destinations associated with tenant-managed campaigns.',
-          Payloads: 'Most payloads are indirect, using meeting links, shared collateral, or follow-up landing pages.',
-          Sender: 'Persona-driven sending means the sender may look like an individual stakeholder instead of a generic platform notice.'
+          Language: 'Platform allows insertion of a short text comment within the team member invitation email template.',
+          Branding: 'Platform allows configuration of team branding items such as a logo and company name, which are then included in any subsequent invitation emails sent to newly added members.',
+          URL: 'Platform allows configuration of a meeting location, which can be set to an arbitrary URL instead of a physical address, and is then included in any subsequent meeting invitations.',
+          Payload: 'Platform allows hosting of various file types which can be shared via a platform-initiated email to arbitrary recipients that includes a hyperlink to the shared file.',
+          Sender: 'Platform emails are sent from a generic address, noreply@google.com, using the configured account name as the sender display name.'
         },
         opsec: {
-          Detections: 'Score relationship mismatches, such as outreach to users with no vendor history or no business reason to receive campaign-like messages.',
-          Cautions: 'Some workflows are genuinely human-written, so sender authentication alone is not enough to classify intent.',
-          Notes: 'Useful for studying the overlap between business-email compromise pretexting and SaaS-assisted outreach.'
+          Blue: 'Your feeble skills are no match for the power of the dark side.',
+          Red: 'You have been well trained, my young apprentice. They will be no match for you.'
         }
       },
       {
-        name: 'Dropbox Sign (DEMO)',
-        url: 'https://sign.dropbox.com',
-        tags: ['Language','URL','Sender','Payloads'],
-        summary: 'Signature-request workflow with built-in urgency and a strong expectation of quick user action.',
+        name: 'Google Drive',
+        url: 'https://drive.google.com',
+        tags: ['Language', 'Branding','URL','Payload','Sender'],
+        summary: 'Google is just a search engine... or is it?',
         details: {
-          Branding: 'Signature interfaces inherit trust from common approval processes and can appear normal to business users handling documents daily.',
-          Language: 'Urgent sign-now or review-and-complete language is a core trust lever in this workflow.',
-          URL: 'Review whether the user remains on expected signature domains and whether any follow-on redirects appear after the initial click.',
-          Payloads: 'Payload behavior typically centers on document views, forms, and secondary action pages rather than traditional file attachments.',
-          Sender: 'The apparent sender may be framed as a colleague, vendor, or legal stakeholder tied to the document process.'
+          Language: 'Platform allows insertion of a short text comment within the team member invitation email template.',
+          Branding: 'Platform allows configuration of team branding items such as a logo and company name, which are then included in any subsequent invitation emails sent to newly added members.',
+          URL: 'Platform allows configuration of a meeting location, which can be set to an arbitrary URL instead of a physical address, and is then included in any subsequent meeting invitations.',
+          Payload: 'Platform allows hosting of various file types which can be shared via a platform-initiated email to arbitrary recipients that includes a hyperlink to the shared file.',
+          Sender: 'Platform emails are sent from a generic address, noreply@google.com, using the configured account name as the sender display name.'
         },
         opsec: {
-          Detections: 'Prioritize review of first-time signature notices, cross-tenant approval requests, and requests lacking a recognizable business context.',
-          Cautions: 'Recipients are conditioned to act quickly on signing workflows, which can suppress normal skepticism.',
-          Notes: 'Useful category for combining sender-context and urgency scoring.'
+          Blue: 'Your feeble skills are no match for the power of the dark side.',
+          Red: 'You have been well trained, my young apprentice. They will be no match for you.'
         }
       },
       {
-        name: 'Mailchimp (DEMO)',
-        url: 'https://mailchimp.com',
-        tags: ['Branding','Sender','URL'],
-        summary: 'Mass-mail platform that demonstrates how familiar campaign formatting and tracked links can normalize suspicious content.',
+        name: 'Box',
+        url: 'https://app.box.com',
+        tags: ['Language', 'Branding','URL','Payload','Sender'],
+        summary: 'Google is just a search engine... or is it?',
         details: {
-          Branding: 'Newsletter-style layouts and routine footer elements can make a message feel like standard marketing communication.',
-          Language: 'Announcements, reminders, promotions, and account-style updates can all be wrapped into campaign messaging patterns.',
-          URL: 'Tracked links and campaign redirects should be reviewed for domain consistency and final-destination behavior.',
-          Payloads: 'The platform usually emphasizes clickthrough paths over direct attachment delivery.',
-          Sender: 'Tenant ownership, visible sender branding, and unsubscribe context are useful signals when triaging these messages.'
+          Language: 'Platform allows insertion of a short text comment within the team member invitation email template.',
+          Branding: 'Platform allows configuration of team branding items such as a logo and company name, which are then included in any subsequent invitation emails sent to newly added members.',
+          URL: 'Platform allows configuration of a meeting location, which can be set to an arbitrary URL instead of a physical address, and is then included in any subsequent meeting invitations.',
+          Payload: 'Platform allows hosting of various file types which can be shared via a platform-initiated email to arbitrary recipients that includes a hyperlink to the shared file.',
+          Sender: 'Platform emails are sent from a generic address, noreply@google.com, using the configured account name as the sender display name.'
         },
         opsec: {
-          Detections: 'Identify campaign messages sent to users with no apparent subscription or prior relationship, especially if the links jump to unrelated infrastructure.',
-          Cautions: 'Routine mass-mail styling can make false trust assumptions easy, even when content is out of place.',
-          Notes: 'Helpful for comparing sender legitimacy signals against recipient relevance.'
+          Blue: 'Your feeble skills are no match for the power of the dark side.',
+          Red: 'You have been well trained, my young apprentice. They will be no match for you.'
         }
       },
       {
-        name: 'Google Sites (DEMO)',
-        url: 'https://sites.google.com',
-        tags: ['Branding','URL','Payloads'],
-        summary: 'Hosted pages under a highly trusted ecosystem that can act as intermediate landing points in email-driven workflows.',
+        name: 'DropBox',
+        url: 'https://dropbox.com',
+        tags: ['Language', 'Branding','URL','Payload','Sender'],
+        summary: 'Google is just a search engine... or is it?',
         details: {
-          Branding: 'The broader Google trust halo can extend to lightweight hosted pages even when the content itself deserves scrutiny.',
-          Language: 'Messages often frame the destination as a shared document hub, secure notice, HR resource, or invoice portal.',
-          URL: 'Sites links, path structures, and any chained destinations should be preserved during triage because the first hop may not be the final one.',
-          Payloads: 'Hosted pages can route into forms, login prompts, storage links, or additional hosted content.',
-          Sender: 'The sender identity may not obviously match the hosting platform, which makes trust transfer analysis important.'
+          Language: 'Platform allows insertion of a short text comment within the team member invitation email template.',
+          Branding: 'Platform allows configuration of team branding items such as a logo and company name, which are then included in any subsequent invitation emails sent to newly added members.',
+          URL: 'Platform allows configuration of a meeting location, which can be set to an arbitrary URL instead of a physical address, and is then included in any subsequent meeting invitations.',
+          Payload: 'Platform allows hosting of various file types which can be shared via a platform-initiated email to arbitrary recipients that includes a hyperlink to the shared file.',
+          Sender: 'Platform emails are sent from a generic address, noreply@google.com, using the configured account name as the sender display name.'
         },
         opsec: {
-          Detections: 'Look for external sender identities pushing recipients into first-time Google Sites URLs or pages with thin content and immediate onward actions.',
-          Cautions: 'A familiar Google hostname should not short-circuit destination validation.',
-          Notes: 'Useful for studying intermediate-hop trust and hosted-page enrichment.'
+          Blue: 'Your feeble skills are no match for the power of the dark side.',
+          Red: 'You have been well trained, my young apprentice. They will be no match for you.'
         }
       },
       {
-        name: 'Notion (DEMO)',
-        url: 'https://notion.so',
-        tags: ['Branding','Language','Payloads','Sender'],
-        summary: 'Collaboration and workspace platform that can support document, onboarding, or internal-note narratives in email lures.',
+        name: 'Calendly',
+        url: 'https://calendly.com/',
+        tags: ['Language', 'Branding','URL','Payload','Sender'],
+        summary: 'Google is just a search engine... or is it?',
         details: {
-          Branding: 'The workspace look-and-feel feels modern and legitimate, especially for tech-oriented or distributed teams.',
-          Language: 'Messages often reference onboarding docs, team updates, policy notes, or shared resources that invite low-friction clicks.',
-          URL: 'Shared page links should be reviewed for workspace context, slugs, and any embedded redirects or external handoffs.',
-          Payloads: 'Payloads are usually presented as workspace pages, embedded forms, or linked resources rather than downloads.',
-          Sender: 'Collaborative context means the sender may appear as a teammate, contractor, or project owner instead of a platform system identity.'
+          Language: 'Platform allows insertion of a short text comment within the team member invitation email template.',
+          Branding: 'Platform allows configuration of team branding items such as a logo and company name, which are then included in any subsequent invitation emails sent to newly added members.',
+          URL: 'Platform allows configuration of a meeting location, which can be set to an arbitrary URL instead of a physical address, and is then included in any subsequent meeting invitations.',
+          Payload: 'Platform allows hosting of various file types which can be shared via a platform-initiated email to arbitrary recipients that includes a hyperlink to the shared file.',
+          Sender: 'Platform emails are sent from a generic address, noreply@google.com, using the configured account name as the sender display name.'
         },
         opsec: {
-          Detections: 'Highlight first-time Notion notifications to users outside collaborative functions or recipients who do not normally receive workspace invites.',
-          Cautions: 'Shared-workspace pretexts can feel normal enough that recipients skip validation.',
-          Notes: 'Good dataset candidate for collaboration-themed sender impersonation studies.'
-        }
-      },
-      {
-        name: 'SharePoint Online (DEMO)',
-        url: 'https://microsoft.sharepoint.com',
-        tags: ['Branding','URL','Payloads','Sender'],
-        summary: 'Enterprise document-hosting and sharing surface that appears naturally in many business email workflows.',
-        details: {
-          Branding: 'Strong Microsoft trust and enterprise familiarity can carry over to hosted file or portal links.',
-          Language: 'Typical narrative themes include secure documents, shared files, voicemails, invoice packages, or internal review requests.',
-          URL: 'Tenant names, path structures, and redirect behavior are key because they often carry context about legitimacy or abuse staging.',
-          Payloads: 'The platform can front document previews, archive retrieval, form handoff, or additional cloud-hosted content.',
-          Sender: 'Cross-check the sender against tenant relevance, expected collaboration patterns, and the recipient’s actual relationship to the shared content.'
-        },
-        opsec: {
-          Detections: 'Prioritize new tenant-share notifications, generic lures tied to SharePoint URLs, and suspicious combinations of external sender plus enterprise-hosted document path.',
-          Cautions: 'Microsoft branding can overpower weaker warning signs if analysts rely too heavily on hostname trust.',
-          Notes: 'A strong anchor entry for mapping how enterprise trust carries across hosted links.'
-        }
-      },
-      {
-        name: 'Constant Contact (DEMO)',
-        url: 'https://constantcontact.com',
-        tags: ['Branding','Sender','Language'],
-        summary: 'Campaign platform that illustrates how routine brand-comms tooling can overlap with suspicious sender behavior.',
-        details: {
-          Branding: 'Template-heavy campaign messages can feel ordinary, especially for users accustomed to newsletters and external updates.',
-          Language: 'Reminders, updates, announcements, and event prompts are familiar enough to reduce suspicion in some contexts.',
-          URL: 'Campaign links and redirects should be reviewed for final destinations and relationship to the message theme.',
-          Payloads: 'The service usually supports click-based destinations rather than attachment-heavy workflows.',
-          Sender: 'Sender legitimacy depends heavily on whether the recipient actually has a reason to expect communication from that organization.'
-        },
-        opsec: {
-          Detections: 'Watch for campaign-style delivery that lacks a clear subscriber relationship or targets unusual recipient groups.',
-          Cautions: 'Routine marketing formatting can hide contextual anomalies in plain sight.',
-          Notes: 'Useful for comparing relevance-based trust against template-driven legitimacy.'
+          Blue: 'Your feeble skills are no match for the power of the dark side.',
+          Red: 'You have been well trained, my young apprentice. They will be no match for you.'
         }
       }
     ];
@@ -447,7 +418,7 @@
     let activeTags = new Set();
 
     function tagClass(tag){
-      const map = {Branding:'branding',Language:'language',URL:'url',Payloads:'payloads',Sender:'sender'};
+      const map = {Branding:'branding',Language:'language',URL:'url',Payload:'payload',Sender:'sender'};
       return map[tag] || '';
     }
 
@@ -515,16 +486,15 @@
             <div class="entry-summary">
               <div class="entry-name">
                 <strong>${entry.name}</strong>
-                <small>Click to expand</small>
               </div>
               <div class="entry-url"><a href="${entry.url}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">${entry.url}</a></div>
-              <div class="entry-tags">${visibleTagPills}<span class="expand-indicator">+</span></div>
+              <div class="entry-tags">${visibleTagPills}</div>
             </div>
           </summary>
           <div class="entry-body">
             <div class="entry-grid">
               <section class="main-block">
-                <h3 class="block-title">Main section</h3>
+                <h3 class="block-title">Platform Overview</h3>
                 <div class="pill ${tagClass(entry.tags[0] || 'Branding')}" style="margin-bottom:.75rem">${entry.name}</div>
                 <p>${entry.summary}</p>
                 <p><strong style="color:var(--text)">URL:</strong> <a href="${entry.url}" target="_blank" rel="noopener noreferrer" style="color:var(--cyan)">${entry.url}</a></p>
@@ -547,6 +517,7 @@
 
     function applyFilters(){
       const q = searchBox.value.trim().toLowerCase();
+      entriesData.sort((a, b) => a.name.localeCompare(b.name));
       const filtered = entriesData.filter(entry => matchesSearch(entry, q) && matchesTags(entry));
       renderEntries(filtered);
       const tagText = activeTags.size ? ` · active tags: ${[...activeTags].join(', ')}` : '';
