@@ -1,407 +1,951 @@
 <!doctype html>
 <html lang="en" data-theme="dark">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>LOTE - Living Off Trusted Email</title>
-  <meta name="description" content="LOTE is a public directory for SaaS/Cloud platforms which provide trusted email services that can be leveraged by attackers and offensive cybersecurity professionals alike.">
-  <link rel="preconnect" href="https://api.fontshare.com">
-  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&f[]=clash-display@500,600,700&display=swap" rel="stylesheet">
-  <link rel="icon" type="image/png" sizes="180x180" href="assets/lote-logo.png">
-  <style>
-    :root,[data-theme="dark"]{
-      --bg:#081018;
-      --bg-2:#0c1524;
-      --panel:#0f1b2e;
-      --panel-2:#122338;
-      --panel-3:#162b44;
-      --text:#e6f3ff;
-      --muted:#93a7c4;
-      --faint:#607590;
-      --line:rgba(146,170,212,.14);
-      --cyan:#48d7ff;
-      --teal:#00c2a8;
-      --violet:#8d7dff;
-      --magenta:#ff4fa3;
-      --amber:#ffb84d;
-      --lime:#b5f36b;
-      --danger:#ff7373;
-      --shadow:0 24px 60px rgba(0,0,0,.34);
-      --radius:18px;
-      --radius-sm:12px;
-      --content:1320px;
-      --font-body:'Satoshi',Inter,system-ui,sans-serif;
-      --font-display:'Clash Display','Satoshi',sans-serif;
-      --text-xs:clamp(.75rem,.7rem + .25vw,.875rem);
-      --text-sm:clamp(.875rem,.8rem + .35vw,1rem);
-      --text-base:clamp(1rem,.95rem + .25vw,1.125rem);
-      --text-lg:clamp(1.125rem,1rem + .75vw,1.5rem);
-      --text-xl:clamp(1.5rem,1.2rem + 1.25vw,2.2rem);
-      --text-2xl:clamp(2rem,1.2rem + 2.5vw,3.8rem);
-      --space-1:.25rem;--space-2:.5rem;--space-3:.75rem;--space-4:1rem;--space-5:1.25rem;--space-6:1.5rem;--space-8:2rem;--space-10:2.5rem;--space-12:3rem;--space-16:4rem;--space-20:5rem;
-    }
-    [data-theme="light"]{
-      --bg:#f4f8ff;
-      --bg-2:#eef4ff;
-      --panel:#ffffff;
-      --panel-2:#eff6ff;
-      --panel-3:#e5efff;
-      --text:#162133;
-      --muted:#5f708e;
-      --faint:#7c8ca5;
-      --line:rgba(33,64,112,.12);
-      --cyan:#007aa8;
-      --teal:#007c6c;
-      --violet:#5a46d1;
-      --magenta:#c13784;
-      --amber:#b86d00;
-      --lime:#648d00;
-      --danger:#c54343;
-      --shadow:0 18px 40px rgba(22,33,51,.08);
-    }
-    *,*::before,*::after{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{margin:0;min-height:100vh;font-family:var(--font-body);font-size:var(--text-base);line-height:1.6;color:var(--text);background:
-      radial-gradient(circle at 8% 12%, rgba(72,215,255,.16), transparent 20%),
-      radial-gradient(circle at 92% 10%, rgba(255,79,163,.16), transparent 18%),
-      radial-gradient(circle at 80% 72%, rgba(141,125,255,.16), transparent 22%),
-      radial-gradient(circle at 20% 90%, rgba(181,243,107,.10), transparent 18%),
-      linear-gradient(180deg,var(--bg) 0%,var(--bg-2) 100%);
-      background-attachment:fixed}
-    a{color:inherit}
-    img,svg{display:block;max-width:100%}
-    button,input{font:inherit;color:inherit}
-    .shell{max-width:var(--content);margin:0 auto;padding:0 var(--space-4)}
-    .skip{position:absolute;left:-9999px}.skip:focus{left:1rem;top:1rem;z-index:200;background:var(--panel);padding:.75rem 1rem;border-radius:var(--radius-sm)}
-    .scanlines::before{content:"";position:fixed;inset:0;pointer-events:none;background:linear-gradient(to bottom, rgba(255,255,255,.022), rgba(255,255,255,0) 2px);background-size:100% 4px;opacity:.18;mix-blend-mode:soft-light}
-    header{position:sticky;top:0;z-index:100;background:color-mix(in srgb,var(--bg) 74%, transparent);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
-    .nav{display:flex;align-items:center;justify-content:space-between;gap:var(--space-4);padding:1rem 0}
-    .brand{display:flex;gap:.9rem;align-items:center;text-decoration:none}
-    .logo{width:64px;height:64px;border-radius:14px;display:grid;place-items:center;position:relative;}
-    .brand strong{display:block;font-family:var(--font-display);font-size:1.45rem;letter-spacing:.06em;text-transform:uppercase}
-    .brand span{display:block;font-size:var(--text-xs);letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
-    .nav-actions{display:flex;gap:.75rem;flex-wrap:wrap}
-    .nav-btn{border:1px solid var(--line);background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));padding:.82rem 1rem;border-radius:999px;text-decoration:none;cursor:pointer}
-    .hero{padding:clamp(3.4rem,8vw,7rem) 0 2.5rem}
-    .hero-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:var(--space-8);align-items:start}
-    .eyebrow{display:inline-flex;align-items:center;gap:.55rem;padding:.5rem .8rem;border-radius:999px;border:1px solid rgba(72,215,255,.18);background:rgba(18,35,56,.6);color:var(--cyan);font-size:var(--text-xs);letter-spacing:.12em;text-transform:uppercase}
-    h1{margin:1rem 0 1rem;font-family:var(--font-display);font-size:clamp(3rem,7vw,6.3rem);line-height:.9;max-width:11ch;text-transform:uppercase}
-    .lead{margin:0 0 var(--space-6);max-width:68ch;color:var(--muted)}
-    .cta-row{display:flex;gap:var(--space-3);flex-wrap:wrap}
-    .btn{display:inline-flex;align-items:center;gap:.65rem;padding:1rem 1.2rem;border-radius:999px;text-decoration:none;border:1px solid var(--line);font-weight:700}
-    .btn-primary{background:linear-gradient(135deg,var(--cyan),var(--violet));color:#07111b;box-shadow:0 0 28px rgba(72,215,255,.22)}
-    .btn-secondary{background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01))}
-    .hero-card,.control-bar,.entry,.footer-card,.note-card{background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.015));border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);position:relative;overflow:hidden}
-    .hero-card::after,.control-bar::after,.entry::after,.footer-card::after,.note-card::after{content:"";position:absolute;inset:0;background:linear-gradient(140deg, rgba(72,215,255,.035), transparent 45%, rgba(255,79,163,.04));pointer-events:none}
-    .hero-card{padding:var(--space-5)}
-    .hero-card h2,.section-head h2 {margin:0 0 .55rem;font-family:var(--font-display);font-size:var(--text-xl);letter-spacing:.04em;text-transform:uppercase}
-    .footer-head h2{margin:2.5rem 0 0;font-family:var(--font-display);font-size:var(--text-xl);letter-spacing:.04em;text-transform:uppercase}
-    .signal-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-3);margin-top:var(--space-4)}
-    .signal{padding:1rem;border-radius:14px;background:linear-gradient(180deg, rgba(72,215,255,.08), rgba(141,125,255,.05));border:1px solid rgba(72,215,255,.12)}
-    .signal small{display:block;color:var(--faint);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.35rem}
-    .signal strong{display:block;font-size:1rem}
-    .section-head{display:flex;justify-content:space-between;align-items:end;gap:var(--space-4);margin-bottom:1rem}
-    .footer-head{display:flex;justify-content:space-between;align-items:end;gap:var(--space-4);margin-bottom:1rem}
-    .section-head p{margin:0;max-width:72ch;color:var(--muted)}
-    .footer-head p{margin:0;max-width:72ch;color:var(--muted)}
-    .control-bar{padding:var(--space-4);margin-bottom:1rem}
-    .control-grid{display:grid;grid-template-columns:1.5fr 1fr;gap:var(--space-4);align-items:start}
-    .search-input{width:100%;padding:1rem 1rem;border-radius:14px;border:1px solid var(--line);background:rgba(7,18,30,.82);outline:none}
-    .search-input:focus{border-color:rgba(72,215,255,.34);box-shadow:0 0 0 4px rgba(72,215,255,.08)}
-    .tag-filter-wrap h3{margin:0 0 .7rem;font-size:var(--text-sm);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
-    .tag-filter-list{display:flex;flex-wrap:wrap;gap:.65rem}
-    .tag-filter{border:1px solid rgba(146,170,212,.18);background:rgba(255,255,255,.02);padding:.58rem .82rem;border-radius:999px;cursor:pointer;font-size:var(--text-xs);letter-spacing:.04em;transition:.18s ease}
-    .tag-filter.active{transform:translateY(-1px);box-shadow:0 0 0 1px rgba(255,255,255,.02), 0 0 24px rgba(72,215,255,.12)}
-    .tag-filter[data-tag="Branding"].active{background:rgba(72,215,255,.16);border-color:rgba(72,215,255,.42);color:var(--cyan)}
-    .tag-filter[data-tag="Language"].active{background:rgba(255,79,163,.16);border-color:rgba(255,79,163,.42);color:var(--magenta)}
-    .tag-filter[data-tag="URL"].active{background:rgba(141,125,255,.16);border-color:rgba(141,125,255,.42);color:var(--violet)}
-    .tag-filter[data-tag="Payload"].active{background:rgba(255,184,77,.16);border-color:rgba(255,184,77,.42);color:var(--amber)}
-    .tag-filter[data-tag="Sender"].active{background:rgba(181,243,107,.16);border-color:rgba(181,243,107,.42);color:var(--lime)}
-    .results-meta{margin-top:.9rem;color:var(--muted);font-size:var(--text-sm)}
-    .list-head,.entry-summary{display:grid;grid-template-columns:minmax(180px,1.1fr) minmax(260px,1.45fr) minmax(220px,.95fr);gap:var(--space-4);align-items:center}
-    .list-head{padding:.3rem 1rem .8rem;color:var(--faint);font-size:var(--text-xs);text-transform:uppercase;letter-spacing:.14em}
-    .entries{display:grid;gap:var(--space-4)}
-    .entry{padding:0}
-    .entry-toggle{width:100%;text-align:left;background:none;border:0;color:inherit;padding:1.15rem 1.1rem 1rem;cursor:pointer}
-    .entry-toggle:hover .entry-summary{transform:translateY(-1px)}
-    .entry-summary{transition:transform .18s ease}
-    .entry-name strong{display:block;font-size:1.15rem;}
-    .entry-name small{display:block;color:var(--faint);font-size:var(--text-xs);letter-spacing:.12em;text-transform:uppercase;margin-top:.25rem}
-    .entry-url a{color:var(--cyan);text-decoration:none;word-break:break-all}
-    .entry-tags{display:flex;flex-wrap:wrap;gap:.55rem;justify-content:flex-start}
-    .pill{display:inline-flex;align-items:center;padding:.45rem .72rem;border-radius:999px;font-size:var(--text-xs);border:1px solid var(--line);background:rgba(255,255,255,.02)}
-    .pill.branding{color:var(--cyan);border-color:rgba(72,215,255,.28);background:rgba(72,215,255,.09)}
-    .pill.language{color:var(--magenta);border-color:rgba(255,79,163,.28);background:rgba(255,79,163,.09)}
-    .pill.url{color:var(--violet);border-color:rgba(141,125,255,.28);background:rgba(141,125,255,.09)}
-    .pill.payload{color:var(--amber);border-color:rgba(255,184,77,.28);background:rgba(255,184,77,.09)}
-    .pill.sender{color:var(--lime);border-color:rgba(181,243,107,.28);background:rgba(181,243,107,.09)}
-    .entry-body{padding:0 1.1rem 1.15rem;border-top:1px solid var(--line)}
-    .entry-grid{display:grid;grid-template-columns:1.05fr 1.2fr .95fr;gap:var(--space-4);padding-top:1rem}
-    .detail-block,.opsec-block,.main-block{padding:1rem;border-radius:14px;background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01));border:1px solid var(--line)}
-    .block-title{margin:0 0 .8rem;font-size:var(--text-sm);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
-    .main-block p,.opsec-block p{margin:.45rem 0 0;color:var(--muted)}
-    .tag-detail-list{display:grid;gap:.8rem}
-    .tag-detail{padding:.9rem;border-radius:12px;border:1px solid var(--line);background:rgba(255,255,255,.02)}
-    .tag-detail strong{display:flex;align-items:center;gap:.55rem;margin-bottom:.35rem;font-size:var(--text-xs);letter-spacing:.12em;text-transform:uppercase}
-    .tag-detail p{margin:0;color:var(--muted)}
-    .tag-detail.branding strong{color:var(--cyan)}
-    .tag-detail.language strong{color:var(--magenta)}
-    .tag-detail.url strong{color:var(--violet)}
-    .tag-detail.payload strong{color:var(--amber)}
-    .tag-detail.sender strong{color:var(--lime)}
-    .opsec-list{display:grid;gap:.8rem}
-    .opsec-item{padding:.85rem;border-radius:12px;background:rgba(255,255,255,.02);border:1px solid var(--line)}
-    .opsec-item strong{display:block;margin-bottom:.3rem;font-size:var(--text-xs);letter-spacing:.11em;text-transform:uppercase}
-    .opsec-item p{margin:0;color:var(--muted)}
-    .taxonomy{display:grid;grid-template-columns:repeat(5,1fr);gap:var(--space-4);margin-bottom:var(--space-10)}
-    .note-card{padding:var(--space-5)}
-    .note-card h3{margin:0 0 .45rem;font-size:var(--text-sm);letter-spacing:.12em;text-transform:uppercase}
-    .note-card p{margin:0;color:var(--muted)}
-    .footer-card{padding:var(--space-6);display:flex;justify-content:space-between;align-items:center;gap:var(--space-4);margin:0 0 var(--space-10) 0}
-    code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;background:rgba(72,215,255,.08);padding:.1rem .35rem;border-radius:8px}
-    details > summary {
-      list-style: none;
-    }
-    details > summary::-webkit-details-marker {
-      display: none;
-    }
-    details > summary::marker {
-      content: "";
-    }
-    @media (max-width:1180px){.hero-grid,.control-grid,.entry-grid,.taxonomy{grid-template-columns:1fr}.signal-grid{grid-template-columns:1fr}}
-    @media (max-width:900px){.list-head{display:none}.entry-summary{grid-template-columns:1fr}.expand-indicator{justify-self:start}}
-    @media (max-width:760px){.nav,.section-head,.footer-card{flex-direction:column;align-items:flex-start}h1{max-width:12ch}}
-  </style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>LOTE - Living Off Trusted Email</title>
+    <meta name="description"
+          content="LOTE is a public directory for SaaS/Cloud platforms which provide trusted email services that can be leveraged by attackers and offensive cybersecurity professionals alike.">
+    <link rel="preconnect" href="https://api.fontshare.com">
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&f[]=clash-display@500,600,700&display=swap"
+          rel="stylesheet">
+    <link rel="icon" type="image/png" sizes="180x180" href="assets/lote-logo.png">
+    <style>
+        :root, [data-theme="dark"] {
+            --bg: #081018;
+            --bg-2: #0c1524;
+            --panel: #0f1b2e;
+            --panel-2: #122338;
+            --panel-3: #162b44;
+            --text: #e6f3ff;
+            --muted: #93a7c4;
+            --faint: #607590;
+            --line: rgba(146, 170, 212, .14);
+            --cyan: #48d7ff;
+            --teal: #00c2a8;
+            --violet: #8d7dff;
+            --magenta: #ff4fa3;
+            --amber: #ffb84d;
+            --lime: #b5f36b;
+            --danger: #ff7373;
+            --shadow: 0 24px 60px rgba(0, 0, 0, .34);
+            --radius: 18px;
+            --radius-sm: 12px;
+            --content: 1320px;
+            --font-body: 'Satoshi', Inter, system-ui, sans-serif;
+            --font-display: 'Clash Display', 'Satoshi', sans-serif;
+            --text-xs: clamp(.75rem, .7rem + .25vw, .875rem);
+            --text-sm: clamp(.875rem, .8rem + .35vw, 1rem);
+            --text-base: clamp(1rem, .95rem + .25vw, 1.125rem);
+            --text-lg: clamp(1.125rem, 1rem + .75vw, 1.5rem);
+            --text-xl: clamp(1.5rem, 1.2rem + 1.25vw, 2.2rem);
+            --text-2xl: clamp(2rem, 1.2rem + 2.5vw, 3.8rem);
+            --space-1: .25rem;
+            --space-2: .5rem;
+            --space-3: .75rem;
+            --space-4: 1rem;
+            --space-5: 1.25rem;
+            --space-6: 1.5rem;
+            --space-8: 2rem;
+            --space-10: 2.5rem;
+            --space-12: 3rem;
+            --space-16: 4rem;
+            --space-20: 5rem;
+        }
+
+        [data-theme="light"] {
+            --bg: #f4f8ff;
+            --bg-2: #eef4ff;
+            --panel: #ffffff;
+            --panel-2: #eff6ff;
+            --panel-3: #e5efff;
+            --text: #162133;
+            --muted: #5f708e;
+            --faint: #7c8ca5;
+            --line: rgba(33, 64, 112, .12);
+            --cyan: #007aa8;
+            --teal: #007c6c;
+            --violet: #5a46d1;
+            --magenta: #c13784;
+            --amber: #b86d00;
+            --lime: #648d00;
+            --danger: #c54343;
+            --shadow: 0 18px 40px rgba(22, 33, 51, .08);
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box
+        }
+
+        html {
+            scroll-behavior: smooth
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: var(--font-body);
+            font-size: var(--text-base);
+            line-height: 1.6;
+            color: var(--text);
+            background: radial-gradient(circle at 8% 12%, rgba(72, 215, 255, .16), transparent 20%),
+            radial-gradient(circle at 92% 10%, rgba(255, 79, 163, .16), transparent 18%),
+            radial-gradient(circle at 80% 72%, rgba(141, 125, 255, .16), transparent 22%),
+            radial-gradient(circle at 20% 90%, rgba(181, 243, 107, .10), transparent 18%),
+            linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
+            background-attachment: fixed
+        }
+
+        a {
+            color: inherit
+        }
+
+        img, svg {
+            display: block;
+            max-width: 100%
+        }
+
+        button, input {
+            font: inherit;
+            color: inherit
+        }
+
+        .shell {
+            max-width: var(--content);
+            margin: 0 auto;
+            padding: 0 var(--space-4)
+        }
+
+        .skip {
+            position: absolute;
+            left: -9999px
+        }
+
+        .skip:focus {
+            left: 1rem;
+            top: 1rem;
+            z-index: 200;
+            background: var(--panel);
+            padding: .75rem 1rem;
+            border-radius: var(--radius-sm)
+        }
+
+        .scanlines::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            background: linear-gradient(to bottom, rgba(255, 255, 255, .022), rgba(255, 255, 255, 0) 2px);
+            background-size: 100% 4px;
+            opacity: .18;
+            mix-blend-mode: soft-light
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: color-mix(in srgb, var(--bg) 74%, transparent);
+            backdrop-filter: blur(18px);
+            border-bottom: 1px solid var(--line)
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: var(--space-4);
+            padding: 1rem 0
+        }
+
+        .brand {
+            display: flex;
+            gap: .9rem;
+            align-items: center;
+            text-decoration: none
+        }
+
+        .logo {
+            width: 64px;
+            height: 64px;
+            border-radius: 14px;
+            display: grid;
+            place-items: center;
+            position: relative;
+        }
+
+        .brand strong {
+            display: block;
+            font-family: var(--font-display);
+            font-size: 1.45rem;
+            letter-spacing: .06em;
+            text-transform: uppercase
+        }
+
+        .brand span {
+            display: block;
+            font-size: var(--text-xs);
+            letter-spacing: .16em;
+            text-transform: uppercase;
+            color: var(--muted)
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: .75rem;
+            flex-wrap: wrap
+        }
+
+        .nav-btn {
+            border: 1px solid var(--line);
+            background: linear-gradient(180deg, rgba(255, 255, 255, .03), rgba(255, 255, 255, .01));
+            padding: .82rem 1rem;
+            border-radius: 999px;
+            text-decoration: none;
+            cursor: pointer
+        }
+
+        .hero {
+            padding: clamp(3.4rem, 8vw, 7rem) 0 2.5rem
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns:1.08fr .92fr;
+            gap: var(--space-8);
+            align-items: start
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: .55rem;
+            padding: .5rem .8rem;
+            border-radius: 999px;
+            border: 1px solid rgba(72, 215, 255, .18);
+            background: rgba(18, 35, 56, .6);
+            color: var(--cyan);
+            font-size: var(--text-xs);
+            letter-spacing: .12em;
+            text-transform: uppercase
+        }
+
+        h1 {
+            margin: 1rem 0 1rem;
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 7vw, 6.3rem);
+            line-height: .9;
+            max-width: 11ch;
+            text-transform: uppercase
+        }
+
+        .lead {
+            margin: 0 0 var(--space-6);
+            max-width: 68ch;
+            color: var(--muted)
+        }
+
+        .cta-row {
+            display: flex;
+            gap: var(--space-3);
+            flex-wrap: wrap
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: .65rem;
+            padding: 1rem 1.2rem;
+            border-radius: 999px;
+            text-decoration: none;
+            border: 1px solid var(--line);
+            font-weight: 700
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--cyan), var(--violet));
+            color: #07111b;
+            box-shadow: 0 0 28px rgba(72, 215, 255, .22)
+        }
+
+        .btn-secondary {
+            background: linear-gradient(180deg, rgba(255, 255, 255, .03), rgba(255, 255, 255, .01))
+        }
+
+        .btn-secondary:hover {
+            background: linear-gradient(180deg, rgba(255, 255, 255, .04), rgba(255, 255, 255, .02))
+        }
+
+        .hero-card, .control-bar, .entry, .footer-card, .note-card {
+            background: linear-gradient(180deg, rgba(255, 255, 255, .03), rgba(255, 255, 255, .015));
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden
+        }
+
+        .hero-card::after, .control-bar::after, .entry::after, .footer-card::after, .note-card::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(140deg, rgba(72, 215, 255, .035), transparent 45%, rgba(255, 79, 163, .04));
+            pointer-events: none
+        }
+
+        .hero-card {
+            padding: var(--space-5)
+        }
+
+        .hero-card h2, .section-head h2 {
+            margin: 0 0 .55rem;
+            font-family: var(--font-display);
+            font-size: var(--text-xl);
+            letter-spacing: .04em;
+            text-transform: uppercase
+        }
+
+        .footer-head h2 {
+            margin: 2.5rem 0 0;
+            font-family: var(--font-display);
+            font-size: var(--text-xl);
+            letter-spacing: .04em;
+            text-transform: uppercase
+        }
+
+        .signal-grid {
+            display: grid;
+            grid-template-columns:1fr 1fr;
+            gap: var(--space-3);
+            margin-top: var(--space-4)
+        }
+
+        .signal {
+            padding: 1rem;
+            border-radius: 14px;
+            background: linear-gradient(180deg, rgba(72, 215, 255, .08), rgba(141, 125, 255, .05));
+            border: 1px solid rgba(72, 215, 255, .12)
+        }
+
+        .signal small {
+            display: block;
+            color: var(--faint);
+            font-size: .72rem;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            margin-bottom: .35rem
+        }
+
+        .signal strong {
+            display: block;
+            font-size: 1rem
+        }
+
+        .section-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+            gap: var(--space-4);
+            margin-bottom: 1rem
+        }
+
+        .footer-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+            gap: var(--space-4);
+            margin-bottom: 1rem
+        }
+
+        .section-head p {
+            margin: 0;
+            max-width: 72ch;
+            color: var(--muted)
+        }
+
+        .footer-head p {
+            margin: 0;
+            max-width: 72ch;
+            color: var(--muted)
+        }
+
+        .control-bar {
+            padding: var(--space-4);
+            margin-bottom: 1rem
+        }
+
+        .control-grid {
+            display: grid;
+            grid-template-columns:1.5fr 1fr;
+            gap: var(--space-4);
+            align-items: start
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 1rem 1rem;
+            border-radius: 14px;
+            border: 1px solid var(--line);
+            background: var(--panel); /* Use theme-aware background */
+            color: var(--text); /* Use theme-aware text color */
+            outline: none
+        }
+
+        .search-input::placeholder {
+            color: var(--muted); /* Use theme-aware placeholder color */
+        }
+
+        .search-input:focus {
+            border-color: rgba(72, 215, 255, .34);
+            box-shadow: 0 0 0 4px rgba(72, 215, 255, .08)
+        }
+
+        .tag-filter-wrap h3 {
+            margin: 0 0 .7rem;
+            font-size: var(--text-sm);
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: var(--muted)
+        }
+
+        .tag-filter-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .65rem
+        }
+
+        .tag-filter {
+            border: 1px solid rgba(146, 170, 212, .18);
+            background: rgba(255, 255, 255, .02);
+            padding: .58rem .82rem;
+            border-radius: 999px;
+            cursor: pointer;
+            font-size: var(--text-xs);
+            letter-spacing: .04em;
+            transition: .18s ease
+        }
+
+        .tag-filter:hover {
+            background: rgba(255, 255, 255, .04);
+            border-color: rgba(255, 255, 255, .18)
+        }
+
+        .tag-filter.active {
+            transform: translateY(-1px);
+            box-shadow: 0 0 0 1px rgba(255, 255, 255, .02), 0 0 24px rgba(72, 215, 255, .12)
+        }
+
+        .tag-filter[data-tag="Branding"].active {
+            background: rgba(72, 215, 255, .16);
+            border-color: rgba(72, 215, 255, .42);
+            color: var(--cyan)
+        }
+
+        .tag-filter[data-tag="Language"].active {
+            background: rgba(255, 79, 163, .16);
+            border-color: rgba(255, 79, 163, .42);
+            color: var(--magenta)
+        }
+
+        .tag-filter[data-tag="URL"].active {
+            background: rgba(141, 125, 255, .16);
+            border-color: rgba(141, 125, 255, .42);
+            color: var(--violet)
+        }
+
+        .tag-filter[data-tag="Payload"].active {
+            background: rgba(255, 184, 77, .16);
+            border-color: rgba(255, 184, 77, .42);
+            color: var(--amber)
+        }
+
+        .tag-filter[data-tag="Sender"].active {
+            background: rgba(181, 243, 107, .16);
+            border-color: rgba(181, 243, 107, .42);
+            color: var(--lime)
+        }
+
+        .results-meta {
+            margin-top: .9rem;
+            color: var(--muted);
+            font-size: var(--text-sm)
+        }
+
+        .list-head, .entry-summary {
+            display: grid;
+            grid-template-columns:minmax(180px, 1.1fr) minmax(260px, 1.45fr) minmax(320px, 1.3fr);
+            gap: var(--space-4);
+            align-items: center
+        }
+
+        .list-head {
+            padding: .3rem 1rem .8rem;
+            color: var(--faint);
+            font-size: var(--text-xs);
+            text-transform: uppercase;
+            letter-spacing: .14em
+        }
+
+        .entries {
+            display: grid;
+            gap: var(--space-4)
+        }
+
+        .entry {
+            padding: 0
+        }
+
+        .entry-toggle {
+            width: 100%;
+            text-align: left;
+            background: none;
+            border: 0;
+            color: inherit;
+            padding: 1.15rem 1.1rem 1rem;
+            cursor: pointer
+        }
+
+        .entry-toggle:hover .entry-summary {
+            transform: translateY(-2px)
+        }
+
+        .entry-toggle {
+            width: 100%;
+            text-align: left;
+            background: none;
+            border: 0;
+            color: inherit;
+            padding: 1.15rem 1.1rem 1rem;
+            cursor: pointer;
+            transition: background-color .2s ease; /* Add smooth transition */
+        }
+
+        .entry-toggle:hover {
+            background: rgba(255, 255, 255, .04);
+        }
+
+        .entry-summary {
+            transition: transform .18s ease
+        }
+
+        .entry-name strong {
+            display: block;
+            font-size: 1.15rem;
+        }
+
+        .entry-name small {
+            display: block;
+            color: var(--faint);
+            font-size: var(--text-xs);
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            margin-top: .25rem
+        }
+
+        .entry-url a {
+            color: var(--cyan);
+            text-decoration: none;
+            word-break: break-all
+        }
+
+        .entry-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .55rem;
+            justify-content: flex-start
+        }
+
+        .pill {
+            display: inline-flex;
+            align-items: center;
+            padding: .45rem .72rem;
+            border-radius: 999px;
+            font-size: var(--text-xs);
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, .02)
+        }
+
+        .pill.branding {
+            color: var(--cyan);
+            border-color: rgba(72, 215, 255, .28);
+            background: rgba(72, 215, 255, .09)
+        }
+
+        .pill.language {
+            color: var(--magenta);
+            border-color: rgba(255, 79, 163, .28);
+            background: rgba(255, 79, 163, .09)
+        }
+
+        .pill.url {
+            color: var(--violet);
+            border-color: rgba(141, 125, 255, .28);
+            background: rgba(141, 125, 255, .09)
+        }
+
+        .pill.payload {
+            color: var(--amber);
+            border-color: rgba(255, 184, 77, .28);
+            background: rgba(255, 184, 77, .09)
+        }
+
+        .pill.sender {
+            color: var(--lime);
+            border-color: rgba(181, 243, 107, .28);
+            background: rgba(181, 243, 107, .09)
+        }
+
+        .entry-body {
+            padding: 0 1.1rem 1.15rem;
+            border-top: 1px solid var(--line)
+        }
+
+        .entry-grid {
+            display: grid;
+            grid-template-columns:1.05fr 1.2fr .95fr;
+            gap: var(--space-4);
+            padding-top: 1rem
+        }
+
+        .detail-block, .opsec-block, .main-block {
+            padding: 1rem;
+            border-radius: 14px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, .02), rgba(255, 255, 255, .01));
+            border: 1px solid var(--line)
+        }
+
+        .block-title {
+            margin: 0 0 .8rem;
+            font-size: var(--text-sm);
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: var(--muted)
+        }
+
+        .main-block p, .opsec-block p {
+            margin: .45rem 0 0;
+            color: var(--muted)
+        }
+
+        .tag-detail-list {
+            display: grid;
+            gap: .8rem
+        }
+
+        .tag-detail {
+            padding: .9rem;
+            border-radius: 12px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, .02)
+        }
+
+        .tag-detail strong {
+            display: flex;
+            align-items: center;
+            gap: .55rem;
+            margin-bottom: .35rem;
+            font-size: var(--text-xs);
+            letter-spacing: .12em;
+            text-transform: uppercase
+        }
+
+        .tag-detail p {
+            margin: 0;
+            color: var(--muted)
+        }
+
+        .tag-detail.branding strong {
+            color: var(--cyan)
+        }
+
+        .tag-detail.language strong {
+            color: var(--magenta)
+        }
+
+        .tag-detail.url strong {
+            color: var(--violet)
+        }
+
+        .tag-detail.payload strong {
+            color: var(--amber)
+        }
+
+        .tag-detail.sender strong {
+            color: var(--lime)
+        }
+
+        .opsec-list {
+            display: grid;
+            gap: .8rem
+        }
+
+        .opsec-item {
+            padding: .85rem;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, .02);
+            border: 1px solid var(--line)
+        }
+
+        .opsec-item strong {
+            display: block;
+            margin-bottom: .3rem;
+            font-size: var(--text-xs);
+            letter-spacing: .11em;
+            text-transform: uppercase
+        }
+
+        .opsec-item p {
+            margin: 0;
+            color: var(--muted)
+        }
+
+        .taxonomy {
+            display: grid;
+            grid-template-columns:repeat(5, 1fr);
+            gap: var(--space-4);
+            margin-bottom: var(--space-10)
+        }
+
+        .note-card {
+            padding: var(--space-5)
+        }
+
+        .note-card h3 {
+            margin: 0 0 .45rem;
+            font-size: var(--text-sm);
+            letter-spacing: .12em;
+            text-transform: uppercase
+        }
+
+        .note-card p {
+            margin: 0;
+            color: var(--muted)
+        }
+
+        .note-card span {
+            color: red;
+            font-weight: 00
+        }
+
+        .footer-card {
+            padding: var(--space-6);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: var(--space-4);
+            margin: 0 0 var(--space-10) 0
+        }
+
+        code {
+            font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+            background: rgba(72, 215, 255, .08);
+            padding: .1rem .35rem;
+            border-radius: 8px
+        }
+
+        details > summary {
+            list-style: none;
+        }
+
+        details > summary::-webkit-details-marker {
+            display: none;
+        }
+
+        details > summary::marker {
+            content: "";
+        }
+
+        #searchBox::placeholder {
+            font-style: italic;
+        }
+
+        .tooltip {
+            position: absolute;
+            background: #333;
+            color: white;
+            padding: 8px;
+            border-radius: 4px;
+            font-size: 14px;
+            z-index: 1000;
+            pointer-events: none;
+            display: none;
+            white-space: nowrap;
+        }
+
+        .hover-tip {
+            background: yellow;
+            cursor: help;
+        }
+
+        @media (max-width: 1180px) {
+            .hero-grid, .control-grid, .entry-grid, .taxonomy {
+                grid-template-columns:1fr
+            }
+
+            .signal-grid {
+                grid-template-columns:1fr
+            }
+        }
+
+        @media (max-width: 900px) {
+            .list-head {
+                display: none
+            }
+
+            .entry-summary {
+                grid-template-columns:1fr
+            }
+
+            .expand-indicator {
+                justify-self: start
+            }
+        }
+
+        @media (max-width: 760px) {
+            .nav, .section-head, .footer-card {
+                flex-direction: column;
+                align-items: flex-start
+            }
+
+            h1 {
+                max-width: 12ch
+            }
+        }
+    </style>
 </head>
 <body class="scanlines">
-  <header>
+<header>
     <div class="shell nav">
-      <a class="brand" href="#top">
-        <div class="logo" aria-hidden="true">
-          <img src="assets/lote-logo.png" alt="lote-logo">
+        <a class="brand" href="#top">
+            <div class="logo" aria-hidden="true">
+                <img src="assets/lote-logo.png" alt="lote-logo">
+            </div>
+            <div>
+                <strong>THE LOTE PROJECT</strong>
+                <span>[from tumikoto with l❤ve]</span>
+            </div>
+        </a>
+        <div class="nav-actions">
+            <a class="nav-btn" href="#taxonomy-header">Taxonomy</a>
+            <a class="nav-btn" href="#directory-header">Directory</a>
+            <a class="nav-btn" href="#contribute-header">Contribute</a>
+            <button class="nav-btn" type="button" data-theme-toggle aria-label="Toggle theme">Light Mode</button>
         </div>
-        <div>
-          <strong>THE LOTE PROJECT</strong>
-          <span>from tumikoto with l❤ve</span>
-        </div>
-      </a>
-      <div class="nav-actions">
-        <a class="nav-btn" href="#taxonomy-header">Taxonomy</a>
-        <a class="nav-btn" href="#directory-header">Directory</a>
-        <a class="nav-btn" href="#contribute-header">Contribute</a>
-        <button class="nav-btn" type="button" data-theme-toggle aria-label="Toggle theme">Light Mode</button>
-      </div>
     </div>
-  </header>
+</header>
 
-  <main id="main" class="shell">
+<main id="main" class="shell">
     <section class="hero" id="top">
-      <div class="hero-grid">
-        <div>
-          <h1>Living Off Trusted Email</h1>
-          <p class="lead">A quick-reference page detailing options for leveraging trusted platforms' email features to deliver your phishing emails for you during your next social engineering campaign.</p>
-          <p class="lead"><strong><i>NOTE: current directory data is for demonstration purposes while this project is under active development.</i></strong></p>
+        <div class="hero-grid">
+            <div>
+                <h1>Living Off Trusted Email</h1>
+                <p class="lead">A quick-reference page detailing options for leveraging trusted platforms' email
+                    features to deliver your phishing emails for you during your next social engineering campaign.</p>
+                <p class="lead"><strong><i>NOTE: current directory data is for demonstration purposes while this project
+                    is under active development.</i></strong></p>
 
+            </div>
+            <aside class="hero-card">
+                <h2>Operator Guide</h2>
+                <div class="signal-grid">
+                    <div class="signal"><small>Quick Reference</small><strong>Platform name, URL, and applicable
+                        tags</strong></div>
+                    <div class="signal"><small>Expanded Contents</small><strong> See full tag details and other opsec
+                        notes</strong></div>
+                    <div class="signal"><small>Search & Filter</small><strong>Show LOTE options with the capabilities
+                        you need</strong></div>
+                    <div class="signal"><small>Feedback</small><strong>Contributions and corrections are always
+                        welcome</strong></div>
+                </div>
+            </aside>
         </div>
-        <aside class="hero-card">
-          <h2>Operator Guide</h2>
-          <div class="signal-grid">
-            <div class="signal"><small>Quick Reference</small><strong>Platform name, URL, and applicable tags</strong></div>
-            <div class="signal"><small>Expanded Contents</small><strong> See full tag details and other opsec notes</strong></div>
-            <div class="signal"><small>Search & Filter</small><strong>Show LOTE options with the capabilities you need</strong></div>
-            <div class="signal"><small>Feedback</small><strong>Contributions and corrections are always welcome</strong></div>
-          </div>
-        </aside>
-      </div>
     </section>
 
     <div class="section-head" id="taxonomy-header">
-      <div>
-        <h2>Taxonomy</h2>
-        <p>An overview of general tag definitions is included below. Each LOTE entry can be expanded for further details related to how each tag pertains to the platform in question.</p>
-      </div>
+        <div>
+            <h2>Taxonomy</h2>
+            <p>An overview of general tag definitions is included below. Each LOTE entry can be expanded for further
+                details related to how each tag pertains to the platform in question.</p>
+        </div>
     </div>
 
     <section class="taxonomy" id="taxonomy">
-      <article class="note-card"><h3 style="color:var(--magenta)">Language</h3><p>Platforms which allow arbitrary text to be included in sent emails. If arbitrary text can include HTML tags, additional applicable tags may apply.</p></article>
-      <article class="note-card"><h3 style="color:var(--cyan)">Branding</h3><p>Platforms which allow arbitrary images or company name to be included in sent emails in a manner distinct from arbitrary text insertion (i.e., prominent styles). </p></article>
-      <article class="note-card"><h3 style="color:var(--violet)">URL</h3><p>Platforms which allow arbitrary URLs to be included in sent emails in a manner distinct from arbitrary text insertion (e.g., anchor tag, button, meeting location, etc.).</p></article>
-      <article class="note-card"><h3 style="color:var(--amber)">Payload</h3><p>Platforms which allow either direct file attachments with sent emails or whose emails are designed to link directly to a file hosted on their platform.</p></article>
-      <article class="note-card"><h3 style="color:var(--lime)">Sender</h3><p>Platforms which allow users to customize the display name used in the source address for the sent email or otheriwse mask the user by sending from a generic address.</p></article>
+        <article class="note-card"><h3 style="color:var(--magenta)">Language</h3>
+            <p>Platforms which <span>allow arbitrary text</span> to be included in sent emails. If the arbitrary text
+                can include certain <span>HTML elements</span>, then additional LOTE tags may apply for that platform as
+                well.</p></article>
+        <article class="note-card"><h3 style="color:var(--cyan)">Branding</h3>
+            <p>Platforms which <span>allow arbitrary images</span> to be included in sent emails, or a <span>company name</span>
+                in a manner distinct from arbitrary text insertion (i.e., prominent styling or location in email). </p>
+        </article>
+        <article class="note-card"><h3 style="color:var(--violet)">URL</h3>
+            <p>Platforms which <span>allow arbitrary URLs</span> to be included in sent emails in a manner distinct from
+                arbitrary text insertion (e.g., anchor tag, button, meeting location, ICS file contents, etc.).</p>
+        </article>
+        <article class="note-card"><h3 style="color:var(--amber)">Payload</h3>
+            <p>Platforms which either <span>allow arbitrary attachments</span> to sent emails, or whose emails are
+                designed to <span>link directly to a file</span> or folder of files hosted on the platform.</p>
+        </article>
+        <article class="note-card"><h3 style="color:var(--lime)">Sender</h3>
+            <p>Platforms which allow users to <span>customize the display name</span> used in the source address for the
+                sent email, or which sends from a <span>generic address which masks</span> the real sender identity.</p>
+        </article>
     </section>
 
     <section id="directory">
-      <div class="section-head" id="directory-header">
-        <div>
-          <h2>Directory</h2>
-          <p>Search LOTE entry text, or click a tag to filter the list. Expand any entry to inspect its tag-specific details and any additional opsec notes related to its use for phishing campaigns.</p>
+        <div class="section-head" id="directory-header">
+            <div>
+                <h2>Directory</h2>
+                <p>Search LOTE entry text, or click a tag to filter the list. Expand any entry to inspect its
+                    tag-specific details and any additional opsec notes related to its use for phishing campaigns.</p>
+            </div>
         </div>
-      </div>
 
-      <div class="control-bar">
-        <div class="control-grid">
-          <div>
-            <label class="sr-only" for="searchBox">Search entries</label>
-            <input id="searchBox" class="search-input" type="search" placeholder="Search service name, URL, tag detail, detection note, or caution text">
-            <div class="results-meta" id="resultsMeta">Showing all entries</div>
-          </div>
-          <div class="tag-filter-wrap">
-            <h3>Filter by tags</h3>
-            <div class="tag-filter-list" id="tagFilters"></div>
-          </div>
+        <div class="control-bar">
+            <div class="control-grid">
+                <div>
+                    <label class="sr-only" for="searchBox">Search Entries</label>
+                    <input id="searchBox" class="search-input" type="search" placeholder="enter your keywords here"
+                           aria-label="Search entries">
+                    <div class="results-meta" id="resultsMeta">Showing all entries</div>
+                </div>
+                <div class="tag-filter-wrap">
+                    <h3>Filter by tags</h3>
+                    <div class="tag-filter-list" id="tagFilters"></div>
+                </div>
+            </div>
         </div>
-      </div>
 
-      <div class="list-head" aria-hidden="true">
-        <div>Name</div>
-        <div>URL</div>
-        <div>Tags</div>
-      </div>
+        <div class="list-head" aria-hidden="true">
+            <div>Name</div>
+            <div>URL</div>
+            <div>Tags</div>
+        </div>
 
-      <div class="entries" id="entries"></div>
+        <div class="entries" id="entries"></div>
     </section>
 
 
-  </main>
+</main>
 
 
-
-  <footer class="shell">
+<footer class="shell">
     <div class="footer-head" id="contribute-header">
-      <h2>Contribute</h2>
+        <h2>Contribute</h2>
     </div>
     <div class="footer-card">
-      <div>
-        <p style="margin:.35rem 0 0;color:var(--muted)">Got suggestions? Submit a PR for any corrections, contributions, or other ideas to help improve this project for the community.</p>
-      </div>
-      <a class="btn btn-secondary" href="https://github.com/lote-project/lote-project.github.io">GITHUB REPO</a>
+        <div>
+            <p style="margin:.35rem 0 0;color:var(--muted)">Got suggestions? Submit a PR for any corrections,
+                contributions, or other ideas to help improve this project for the community.</p>
+        </div>
+        <a class="btn btn-secondary" href="https://github.com/lote-project/lote-project.github.io">LOTE REPO</a>
     </div>
-  </footer>
+</footer>
 
-  <script>
-    const TAGS = ['Branding','Language','URL','Payload','Sender'];
+<script>
+    const TAGS = ['Branding', 'Language', 'URL', 'Payload', 'Sender'];
 
-    const entriesData = [
-      {
-        name: 'ScreenConnect',
-        url: 'https://screenconnect.com',
-        tags: ['Language', 'Branding','URL','Payload','Sender'],
-        summary: 'Google is just a search engine... or is it?',
-        details: {
-          Language: 'Platform allows insertion of a short text comment within the team member invitation email template.',
-          Branding: 'Platform allows configuration of team branding items such as a logo and company name, which are then included in any subsequent invitation emails sent to newly added members.',
-          URL: 'Platform allows configuration of a meeting location, which can be set to an arbitrary URL instead of a physical address, and is then included in any subsequent meeting invitations.',
-          Payload: 'Platform allows hosting of various file types which can be shared via a platform-initiated email to arbitrary recipients that includes a hyperlink to the shared file.',
-          Sender: 'Platform emails are sent from a generic address, noreply@google.com, using the configured account name as the sender display name.'
-        },
-        opsec: {
-          Blue: 'Your feeble skills are no match for the power of the dark side.',
-          Red: 'You have been well trained, my young apprentice. They will be no match for you.'
-        }
-      },
-      {
-        name: 'EventCreate',
-        url: 'https://eventcreate.com',
-        tags: ['Language', 'Branding','URL','Payload','Sender'],
-        summary: 'Google is just a search engine... or is it?',
-        details: {
-          Language: 'Platform allows insertion of a short text comment within the team member invitation email template.',
-          Branding: 'Platform allows configuration of team branding items such as a logo and company name, which are then included in any subsequent invitation emails sent to newly added members.',
-          URL: 'Platform allows configuration of a meeting location, which can be set to an arbitrary URL instead of a physical address, and is then included in any subsequent meeting invitations.',
-          Payload: 'Platform allows hosting of various file types which can be shared via a platform-initiated email to arbitrary recipients that includes a hyperlink to the shared file.',
-          Sender: 'Platform emails are sent from a generic address, noreply@google.com, using the configured account name as the sender display name.'
-        },
-        opsec: {
-          Blue: 'Your feeble skills are no match for the power of the dark side.',
-          Red: 'You have been well trained, my young apprentice. They will be no match for you.'
-        }
-      },
-      {
-        name: 'SharePoint & OneDrive',
-        url: 'https://m365.cloud.microsoft/',
-        tags: ['Language', 'Branding','URL','Payload','Sender'],
-        summary: 'Google is just a search engine... or is it?',
-        details: {
-          Language: 'Platform allows insertion of a short text comment within the team member invitation email template.',
-          Branding: 'Platform allows configuration of team branding items such as a logo and company name, which are then included in any subsequent invitation emails sent to newly added members.',
-          URL: 'Platform allows configuration of a meeting location, which can be set to an arbitrary URL instead of a physical address, and is then included in any subsequent meeting invitations.',
-          Payload: 'Platform allows hosting of various file types which can be shared via a platform-initiated email to arbitrary recipients that includes a hyperlink to the shared file.',
-          Sender: 'Platform emails are sent from a generic address, noreply@google.com, using the configured account name as the sender display name.'
-        },
-        opsec: {
-          Blue: 'Your feeble skills are no match for the power of the dark side.',
-          Red: 'You have been well trained, my young apprentice. They will be no match for you.'
-        }
-      },
-      {
-        name: 'Google Drive',
-        url: 'https://drive.google.com',
-        tags: ['Language', 'Branding','URL','Payload','Sender'],
-        summary: 'Google is just a search engine... or is it?',
-        details: {
-          Language: 'Platform allows insertion of a short text comment within the team member invitation email template.',
-          Branding: 'Platform allows configuration of team branding items such as a logo and company name, which are then included in any subsequent invitation emails sent to newly added members.',
-          URL: 'Platform allows configuration of a meeting location, which can be set to an arbitrary URL instead of a physical address, and is then included in any subsequent meeting invitations.',
-          Payload: 'Platform allows hosting of various file types which can be shared via a platform-initiated email to arbitrary recipients that includes a hyperlink to the shared file.',
-          Sender: 'Platform emails are sent from a generic address, noreply@google.com, using the configured account name as the sender display name.'
-        },
-        opsec: {
-          Blue: 'Your feeble skills are no match for the power of the dark side.',
-          Red: 'You have been well trained, my young apprentice. They will be no match for you.'
-        }
-      },
-      {
-        name: 'Box',
-        url: 'https://app.box.com',
-        tags: ['Language', 'Branding','URL','Payload','Sender'],
-        summary: 'Google is just a search engine... or is it?',
-        details: {
-          Language: 'Platform allows insertion of a short text comment within the team member invitation email template.',
-          Branding: 'Platform allows configuration of team branding items such as a logo and company name, which are then included in any subsequent invitation emails sent to newly added members.',
-          URL: 'Platform allows configuration of a meeting location, which can be set to an arbitrary URL instead of a physical address, and is then included in any subsequent meeting invitations.',
-          Payload: 'Platform allows hosting of various file types which can be shared via a platform-initiated email to arbitrary recipients that includes a hyperlink to the shared file.',
-          Sender: 'Platform emails are sent from a generic address, noreply@google.com, using the configured account name as the sender display name.'
-        },
-        opsec: {
-          Blue: 'Your feeble skills are no match for the power of the dark side.',
-          Red: 'You have been well trained, my young apprentice. They will be no match for you.'
-        }
-      },
-      {
-        name: 'DropBox',
-        url: 'https://dropbox.com',
-        tags: ['Language', 'Branding','URL','Payload','Sender'],
-        summary: 'Google is just a search engine... or is it?',
-        details: {
-          Language: 'Platform allows insertion of a short text comment within the team member invitation email template.',
-          Branding: 'Platform allows configuration of team branding items such as a logo and company name, which are then included in any subsequent invitation emails sent to newly added members.',
-          URL: 'Platform allows configuration of a meeting location, which can be set to an arbitrary URL instead of a physical address, and is then included in any subsequent meeting invitations.',
-          Payload: 'Platform allows hosting of various file types which can be shared via a platform-initiated email to arbitrary recipients that includes a hyperlink to the shared file.',
-          Sender: 'Platform emails are sent from a generic address, noreply@google.com, using the configured account name as the sender display name.'
-        },
-        opsec: {
-          Blue: 'Your feeble skills are no match for the power of the dark side.',
-          Red: 'You have been well trained, my young apprentice. They will be no match for you.'
-        }
-      },
-      {
-        name: 'Calendly',
-        url: 'https://calendly.com/',
-        tags: ['Language', 'Branding','URL','Payload','Sender'],
-        summary: 'Google is just a search engine... or is it?',
-        details: {
-          Language: 'Platform allows insertion of a short text comment within the team member invitation email template.',
-          Branding: 'Platform allows configuration of team branding items such as a logo and company name, which are then included in any subsequent invitation emails sent to newly added members.',
-          URL: 'Platform allows configuration of a meeting location, which can be set to an arbitrary URL instead of a physical address, and is then included in any subsequent meeting invitations.',
-          Payload: 'Platform allows hosting of various file types which can be shared via a platform-initiated email to arbitrary recipients that includes a hyperlink to the shared file.',
-          Sender: 'Platform emails are sent from a generic address, noreply@google.com, using the configured account name as the sender display name.'
-        },
-        opsec: {
-          Blue: 'Your feeble skills are no match for the power of the dark side.',
-          Red: 'You have been well trained, my young apprentice. They will be no match for you.'
-        }
-      }
-    ];
+    let entriesData = [];
 
     const entriesEl = document.getElementById('entries');
     const searchBox = document.getElementById('searchBox');
@@ -411,71 +955,70 @@
     const themeToggle = document.querySelector('[data-theme-toggle]');
     let activeTags = new Set();
 
-    function tagClass(tag){
-      const map = {Branding:'branding',Language:'language',URL:'url',Payload:'payload',Sender:'sender'};
-      return map[tag] || '';
+    function tagClass(tag) {
+        const map = {Branding: 'branding', Language: 'language', URL: 'url', Payload: 'payload', Sender: 'sender'};
+        return map[tag] || '';
     }
 
-    function renderTagFilters(){
-      tagFiltersEl.innerHTML = '';
-      TAGS.forEach(tag => {
-        const btn = document.createElement('button');
-        btn.type = 'button';
-        btn.className = 'tag-filter' + (activeTags.has(tag) ? ' active' : '');
-        btn.dataset.tag = tag;
-        btn.textContent = tag;
-        btn.addEventListener('click', () => {
-          if(activeTags.has(tag)) activeTags.delete(tag); else activeTags.add(tag);
-          renderTagFilters();
-          applyFilters();
+    function renderTagFilters() {
+        tagFiltersEl.innerHTML = '';
+        TAGS.forEach(tag => {
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'tag-filter' + (activeTags.has(tag) ? ' active' : '');
+            btn.dataset.tag = tag;
+            btn.textContent = tag;
+            btn.addEventListener('click', () => {
+                if (activeTags.has(tag)) activeTags.delete(tag); else activeTags.add(tag);
+                renderTagFilters();
+                applyFilters();
+            });
+            tagFiltersEl.appendChild(btn);
         });
-        tagFiltersEl.appendChild(btn);
-      });
     }
 
-    function matchesSearch(entry, q){
-      if(!q) return true;
-      const haystack = [
-        entry.name,
-        entry.url,
-        entry.summary,
-        ...entry.tags,
-        ...Object.values(entry.details),
-        ...Object.values(entry.opsec)
-      ].join(' ').toLowerCase();
-      return haystack.includes(q);
+    function matchesSearch(entry, q) {
+        if (!q) return true;
+        const haystack = [
+            entry.name,
+            entry.url,
+            entry.summary,
+            ...entry.tags,
+            ...Object.values(entry.details),
+            ...Object.values(entry.opsec)
+        ].join(' ').toLowerCase();
+        return haystack.includes(q);
     }
 
-    function matchesTags(entry){
-      if(activeTags.size === 0) return true;
-      return [...activeTags].every(tag => entry.tags.includes(tag));
+    function matchesTags(entry) {
+        if (activeTags.size === 0) return true;
+        return [...activeTags].every(tag => entry.tags.includes(tag));
     }
 
-    function renderEntries(items){
-      entriesEl.innerHTML = '';
-      if(!items.length){
-        entriesEl.innerHTML = `<article class="entry" style="padding:1.2rem"><strong style="display:block;font-size:1.1rem">No matching entries</strong><p style="margin:.5rem 0 0;color:var(--muted)">Try clearing one or more tag filters or using a broader search term.</p></article>`;
-        return;
-      }
+    function renderEntries(items) {
+        entriesEl.innerHTML = '';
+        if (!items.length) {
+            entriesEl.innerHTML = `<article class="entry" style="padding:1.2rem"><strong style="display:block;font-size:1.1rem">No matching entries</strong><p style="margin:.5rem 0 0;color:var(--muted)">Try clearing one or more tag filters or using a broader search term.</p></article>`;
+            return;
+        }
 
-      items.forEach(entry => {
-        const details = document.createElement('details');
-        details.className = 'entry';
-        const visibleTagPills = entry.tags.map(tag => `<span class="pill ${tagClass(tag)}">${tag}</span>`).join('');
-        const detailBlocks = TAGS.filter(tag => entry.details[tag]).map(tag => `
+        items.forEach(entry => {
+            const details = document.createElement('details');
+            details.className = 'entry';
+            const visibleTagPills = entry.tags.map(tag => `<span class="pill ${tagClass(tag)}">${tag}</span>`).join('');
+            const detailBlocks = TAGS.filter(tag => entry.details[tag]).map(tag => `
           <div class="tag-detail ${tagClass(tag)}">
             <strong>${tag}</strong>
             <p>${entry.details[tag]}</p>
           </div>
         `).join('');
-        const opsecBlocks = Object.entries(entry.opsec).map(([label, text]) => `
+            const opsecBlocks = Object.entries(entry.opsec).map(([index, text]) => `
           <div class="opsec-item">
-            <strong>${label}</strong>
             <p>${text}</p>
           </div>
         `).join('');
 
-        details.innerHTML = `
+            details.innerHTML = `
           <summary class="entry-toggle">
             <div class="entry-summary">
               <div class="entry-name">
@@ -489,44 +1032,67 @@
             <div class="entry-grid">
               <section class="main-block">
                 <h3 class="block-title">Platform Overview</h3>
-                <div class="pill ${tagClass(entry.tags[0] || 'Branding')}" style="margin-bottom:.75rem">${entry.name}</div>
                 <p>${entry.summary}</p>
-                <p><strong style="color:var(--text)">URL:</strong> <a href="${entry.url}" target="_blank" rel="noopener noreferrer" style="color:var(--cyan)">${entry.url}</a></p>
-                <div class="entry-tags" style="margin-top:1rem">${visibleTagPills}</div>
               </section>
               <section class="detail-block">
-                <h3 class="block-title">Tag details</h3>
+                <h3 class="block-title">Tag Details</h3>
                 <div class="tag-detail-list">${detailBlocks}</div>
               </section>
               <section class="opsec-block">
-                <h3 class="block-title">Opsec notes</h3>
+                <h3 class="block-title">Opsec Notes</h3>
                 <div class="opsec-list">${opsecBlocks}</div>
               </section>
             </div>
           </div>
         `;
-        entriesEl.appendChild(details);
-      });
+            entriesEl.appendChild(details);
+        });
     }
 
-    function applyFilters(){
-      const q = searchBox.value.trim().toLowerCase();
-      entriesData.sort((a, b) => a.name.localeCompare(b.name));
-      const filtered = entriesData.filter(entry => matchesSearch(entry, q) && matchesTags(entry));
-      renderEntries(filtered);
-      const tagText = activeTags.size ? ` · active tags: ${[...activeTags].join(', ')}` : '';
-      resultsMeta.textContent = `Showing ${filtered.length} of ${entriesData.length} entries${tagText}`;
+    async function loadData() {
+        try {
+            const response = await fetch('lote.json');
+            const data = await response.json();
+
+            const processedEntries = data.entries.map(entry => {
+                const dynamicTags = Object.keys(entry.details || {});
+                const updatedEntry = Object.assign({}, entry);
+                updatedEntry.tags = dynamicTags;
+                return updatedEntry;
+            });
+
+            return processedEntries;
+        } catch (error) {
+            console.error("Error loading data:", error);
+            return [];
+        }
+    }
+
+
+    function applyFilters() {
+        const q = searchBox.value.trim().toLowerCase();
+        entriesData.sort((a, b) => a.name.localeCompare(b.name));
+        const filtered = entriesData.filter(entry => matchesSearch(entry, q) && matchesTags(entry));
+        renderEntries(filtered);
+        const tagText = activeTags.size ? ` · active tags: ${[...activeTags].join(', ')}` : '';
+        resultsMeta.textContent = `Showing ${filtered.length} of ${entriesData.length} entries${tagText}`;
     }
 
     searchBox.addEventListener('input', applyFilters);
     themeToggle.addEventListener('click', () => {
-      const newTheme = root.dataset.theme === 'light' ? 'dark' : 'light';
-      root.dataset.theme = newTheme;
-      themeToggle.textContent = newTheme === 'light' ? 'Dark mode' : 'Light mode';
+        const newTheme = root.dataset.theme === 'light' ? 'dark' : 'light';
+        root.dataset.theme = newTheme;
+        themeToggle.textContent = newTheme === 'light' ? 'Dark mode' : 'Light mode';
     });
 
-    renderTagFilters();
-    applyFilters();
-  </script>
+    async function initApp() {
+        entriesData = await loadData();
+        renderTagFilters();
+        applyFilters();
+    }
+
+    initApp();
+
+</script>
 </body>
 </html>
