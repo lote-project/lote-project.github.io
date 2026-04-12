@@ -1,0 +1,121 @@
+{
+  "entries": [
+    {
+      "name": "ScreenConnect",
+      "url": "https://screenconnect.com",
+      "summary": "ScreenConnect is a remote support tool allowing you to take control of remote systems. Session join links can be sent via email to arbitrary recipients.",
+      "details": {
+        "Language": "White label branding options allow for customization of the email invitation text.",
+        "Branding": "ScreenConnect allows configuration of team branding items such as a logo and company name, which are then included in any subsequent session join invitation emails sent out.",
+        "Payload": "ScreenConnect includes a link to join support sessions with each invitation email. This link initiates a download of the support session client binary.",
+        "Sender": "Session join invitation emails are sent from a generic address, host@screenconnect.com, by default when a custom SMTP account is not configured."
+      },
+      "opsec": [
+        "Trial instances will display a warning which notes potential for abuse, but this can be partially hidden when join links trigger automatic client binary download.",
+        "Emails will be sent from @screenconnect.com and will contain *.screenconnect.com hyperlinks. See Sublime's link_screenconnect.yml MQL rule for more detection ideas."
+      ]
+    },
+    {
+      "name": "EventCreate",
+      "url": "https://eventcreate.com",
+      "summary": "EventCreate is a web tool for creating and managing event pages. Attendees can be added to an event to trigger emails to arbitrary recipients. While neither arbitrary URLs or links to payloads can be included in the email directly, they can be added to the event page which is linked in the email.",
+      "details": {
+        "Language": "A customized text description can be included in the event invitation email.",
+        "Branding": "EventCreate allows configuration of a company logo which is included with any subsequent event invitation emails.",
+        "Sender": "Sender display name for email invites can be customized by changing the account name. Emails are sent from a generic address, invites@eventcreatemail.com."
+      },
+      "opsec": [
+        "Note that while the FROM address is masked, the email address used to register your EventCreate account will be leaked in the REPLY-TO header.",
+        "URLs to event pages included in the invitation emails follow the pattern www.eventcreate.com/e/*."
+      ]
+    },
+    {
+      "name": "SharePoint",
+      "url": "https://m365.cloud.microsoft",
+      "summary": "SharePoint (like its OneDrive derivation) is a cloud file sharing and collaboration tool. You can upload payloads then trigger invitation emails to arbitrary recipients using the sharing feature.",
+      "details": {
+        "Language": "SharePoint allows insertion of a short text comment within the sharing notification email.",
+        "Payload": "SharePoint allows hosting of various file types which can be shared via a platform-initiated email to arbitrary recipients that includes a hyperlink to the shared file.",
+        "Sender": "Sharing notification emails will essentially impersonate the sender, however document comment/mention notification emails are sent from a generic address, no-reply@sharepointonline.com."
+      },
+      "opsec": [
+        "Note that even in cases where the FROM address is masked, the email address for your Microsoft account will be leaked in the REPLY-TO header.",
+        "Built-in web viewers for common payload file types can make this platform more challenging to leverage successfully.",
+        "Sublime has numerous examples of MQL rules for detecting SharePoint abuse. See link_sharepoint_sus_name.yml or link_sharepoint_folder_file.yml."
+      ]
+    },
+    {
+      "name": "Google Drive",
+      "url": "https://drive.google.com",
+      "summary": "Google Drive is a cloud file sharing and collaboration tool. You can upload payloads then trigger invitation emails to arbitrary recipients using the sharing feature.",
+      "details": {
+        "Payload": "Google Drive allows hosting of various file types which can be shared via a platform-initiated email to arbitrary recipients that includes a hyperlink to the shared file."
+      },
+      "opsec": [
+        "See Sublime MQL rules for detecting Google Drive abuse such as link_google_drive_direct_download_unsolicited.yml or abuse_google_drive_new_sender_domain.yml.",
+        "Built-in web viewers for common payload file types can make this platform more challenging to leverage successfully.",
+        "Google's malware scanning for uploaded files and safety warnings displayed to users for some encrypted file types can hinder SE efforts further."
+      ]
+    },
+    {
+      "name": "Box",
+      "url": "https://app.box.com",
+      "summary": "Box is a cloud file sharing and collaboration tool. You can upload payloads then trigger invitation emails to arbitrary recipients using the sharing feature.",
+      "details": {
+        "Language": "Box allows insertion of a short text comment within the sharing notification email.",
+        "Branding": "Box allows configuration of team branding items such as a logo and company name, which are then included in any subsequent invitation emails sent to newly added members.",
+        "Payload": "Box allows hosting of various file types which can be shared via a platform-initiated email to arbitrary recipients that includes a hyperlink to the shared file.",
+        "Sender": "Sender display name for sharing notification emails can be customized by changing the account name. Emails are sent from a generic address, noreply@box.com."
+      },
+      "opsec": [
+        "Box hyperlinks can be customized to trigger an automatic download instead of displaying the file in its containing Box folder.",
+        "Sharing the parent folder avoids leaking the payload file in the sharing URL. If automatic download is enabled for the hyperlink, an archive of the folder contents will be downloaded.",
+        "See Sublime MQL rules such as abuse_box_credential_phishing.yml for more ideas on detecting abuse of the Box platform."
+      ]
+    },
+    {
+      "name": "DropBox",
+      "url": "https://dropbox.com",
+      "summary": "Dropbox is a cloud file sharing and collaboration tool. You can upload payloads then trigger invitation emails to arbitrary recipients using the sharing feature.",
+      "details": {
+        "Language": "DropBox allows insertion of a short text comment within the sharing notification email.",
+        "Payload": "DropBox allows hosting of various file types which can be shared via a platform-initiated email to arbitrary recipients that includes a hyperlink to the shared file.",
+        "Sender": "Sender display name for sharing notification emails can be customized by changing the account name. Emails are sent from a generic address, no-reply@dropbox.com."
+      },
+      "opsec": [
+        "Note that while the FROM address is masked, the email address used to register your DropBox account will be leaked in the REPLY-TO header.",
+        "See Sublime MQL rules such as abuse_dropbox_new_domain.yml or abuse_dropbox_sus_names.yml for more ideas on detecting abuse of the DropBox platform."
+      ]
+    },
+    {
+      "name": "Calendly",
+      "url": "https://calendly.com",
+      "summary": "Calendly is a platform which allows users to create web-based calendars for online booking. You can then book time on your own calendar using the name end email of your target user to trigger invitation emails.",
+      "details": {
+        "Language": "Calendly allows for customization of significant invitation email text content and formatting.",
+        "Branding": "Calendly allows configuration of account branding items such as a logo and company name, which are then included in any subsequent invitation emails sent to newly added members.",
+        "URL": "Calendly allows configuration of a meeting location, which can be set to an arbitrary URL instead of a physical address, and is then included in any subsequent invitation emails.",
+        "Sender": "Sender display name for email invites can be customized by changing the account name. Emails are sent from a generic address, notifications@calendly.com."
+      },
+      "opsec": [
+        "Note that while the FROM address is masked, the email address used to register your Calendly account will be leaked in the REPLY-TO header.",
+        "All Calendly email invitations will include an attached ICS file. While many details can be removed from the email body, such as the URL for the event location, this data is still present in the ICS file."
+      ]
+    },
+    {
+      "name": "GitHub",
+      "url": "https://github.com",
+      "summary": "GitHub is a code hosting platform for version control and collaboration. You can host payloads using the releases feature and trigger emails to arbitrary recipients via org/repo invitations.",
+      "details": {
+        "Branding": "Platform allows configuration of organization branding items such as a logo and company name, which are then included in any subsequent collaborator invitation emails.",
+        "Payload": "Platform allows hosting of various file types within repos source or release files. Repo access can be granted via a platform-initiated email to arbitrary recipients by adding them as collaborators.",
+        "Language": "Mentions within comments on items such as issues can allows the inclusion of custom language within GitHub notification emails.",
+        "Sender": "Emails notifications for collaborator invitations and mentions are sent from a generic addresses including notifications@github.com and noreply@github.com."
+      },
+      "opsec": [
+        "Note that while the FROM address is masked, the email address used to register your GitHub account will be leaked in the REPLY-TO header.",
+        "See Sublime MQL rules such as service_abuse_github_excessive_mentions_sus_link.yml for more ideas on detecting abuse of the GitHub platform."
+      ]
+    }
+  ]
+}
