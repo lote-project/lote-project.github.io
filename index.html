@@ -867,17 +867,15 @@
     </div>
 
     <section class="taxonomy" id="taxonomy">
-        <article class="note-card"><h3 style="color:var(--magenta)">Language</h3>
-            <p>Platforms which <span>allow arbitrary text</span> to be included in sent emails. If the arbitrary text
-                can include certain <span>HTML elements</span>, then additional LOTE tags may apply for that platform as
-                well.</p></article>
+
         <article class="note-card"><h3 style="color:var(--cyan)">Branding</h3>
             <p>Platforms which <span>allow arbitrary images</span> to be included in sent emails, or a <span>company name</span>
                 in a manner distinct from arbitrary text insertion (i.e., prominent styling or location in email). </p>
         </article>
-        <article class="note-card"><h3 style="color:var(--violet)">URL</h3>
-            <p>Platforms which <span>allow arbitrary URLs</span> to be included in sent emails in a manner distinct from
-                arbitrary text insertion (e.g., anchor tag, button, meeting location, ICS file contents, etc.).</p>
+        <article class="note-card"><h3 style="color:var(--magenta)">Language</h3>
+            <p>Platforms which <span>allow arbitrary text</span> to be included in sent emails. If the arbitrary text
+                can include certain <span>HTML elements</span>, then additional LOTE tags may apply for that platform as
+                well.</p>
         </article>
         <article class="note-card"><h3 style="color:var(--amber)">Payload</h3>
             <p>Platforms which either <span>allow arbitrary attachments</span> to sent emails, or whose emails are
@@ -886,6 +884,10 @@
         <article class="note-card"><h3 style="color:var(--lime)">Sender</h3>
             <p>Platforms which allow users to <span>customize the display name</span> used in the source address for the
                 sent email, or which sends from a <span>generic address which masks</span> the real sender identity.</p>
+        </article>
+        <article class="note-card"><h3 style="color:var(--violet)">URL</h3>
+            <p>Platforms which <span>allow arbitrary URLs</span> to be included in sent emails in a manner distinct from
+                arbitrary text insertion (e.g., anchor tag, button, meeting location, ICS file contents, etc.).</p>
         </article>
     </section>
 
@@ -940,7 +942,7 @@
 </footer>
 
 <script>
-    const TAGS = ['Branding', 'Language', 'URL', 'Payload', 'Sender'];
+    const TAGS = ['Branding', 'Language',  'Payload', 'Sender', 'URL'];
 
     let entriesData = [];
 
@@ -953,7 +955,7 @@
     let activeTags = new Set();
 
     function tagClass(tag) {
-        const map = {Branding: 'branding', Language: 'language', URL: 'url', Payload: 'payload', Sender: 'sender'};
+        const map = {Branding: 'branding', Language: 'language', Payload: 'payload', Sender: 'sender', URL: 'url'};
         return map[tag] || '';
     }
 
@@ -1052,9 +1054,16 @@
             const data = await response.json();
 
             const processedEntries = data.entries.map(entry => {
-                const dynamicTags = Object.keys(entry.details || {});
+                const sortedKeys = Object.keys(entry.details || {}).sort();
+
                 const updatedEntry = Object.assign({}, entry);
-                updatedEntry.tags = dynamicTags;
+
+                // Sort the details object by recreating it with sorted keys
+                updatedEntry.details = Object.fromEntries(
+                    sortedKeys.map(key => [key, entry.details[key]])
+                );
+
+                updatedEntry.tags = sortedKeys;
                 return updatedEntry;
             });
 
@@ -1064,7 +1073,6 @@
             return [];
         }
     }
-
 
     function applyFilters() {
         const q = searchBox.value.trim().toLowerCase();
